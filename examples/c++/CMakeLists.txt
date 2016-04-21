@@ -267,6 +267,7 @@ endif()
 add_example (vcap)
 add_example (ds2413)
 add_example (ds18b20)
+add_example (l3gd20)
 
 # These are special cases where you specify example binary, source file and module(s)
 include_directories (${PROJECT_SOURCE_DIR}/src)
