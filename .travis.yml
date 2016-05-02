@@ -1,7 +1,8 @@
 language: cpp
+compiler:
+  - gcc
+  - clang
 env:
-  - CC=gcc CXX=gcc
-  - CC=clang CXX=clang++
   - NODE4=true
   - NODE5=true
   - NODE012=true
