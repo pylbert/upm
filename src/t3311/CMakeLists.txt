@@ -3,7 +3,7 @@ set (libdescription "upm module for the Comet System T3311")
 set (module_src ${libname}.cxx)
 set (module_hpp ${libname}.hpp)
 
-pkg_check_modules(MODBUS libmodbus)
+pkg_check_modules(MODBUS libmodbus>=3.1.2)
 if (MODBUS_FOUND)
   set (reqlibname "libmodbus")
   include_directories(${MODBUS_INCLUDE_DIRS})
