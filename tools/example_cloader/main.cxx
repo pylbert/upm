@@ -53,8 +53,11 @@ std::vector<std::string> get_files_endswith(std::string lib_path = ".", std::str
             if (endswith(pdir->d_name, ext))
             {
                 char *real_path = realpath((lib_path + pdir->d_name).c_str(), NULL);
-                files.push_back(real_path);
-                free(real_path);
+                if (real_path != NULL)
+                {
+                    files.push_back(real_path);
+                    free(real_path);
+                }
             }
     }
     else
