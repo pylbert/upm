@@ -11,7 +11,7 @@
 #include <map>
 
 #include "upm.h"
-#include "upm/upm_controller_servo.h"
+#include "upm_controller_servo.h"
 #include "upm_sensor_temperature.h"
 #include "upm_sensor_pressure.h"
 #include "upm_sensor_ph.h"
@@ -184,7 +184,7 @@ int main(int argc, char* argv[])
     // For each sensor which provides pressure functionality
     if (!fts_pressure.empty())
     {
-        std::cout << "Calling pressure inits..." << std::endl;
+        std::cout << "[Pressure Sensors]" << std::endl;
         for(std::map<std::string, upm_ft_pressure>::const_iterator cit = fts_pressure.begin();
                 cit != fts_pressure.end(); ++cit)
         {
@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
     // For each sensor which provides servo functionality
     if (!fts_servo.empty())
     {
-        std::cout << "Calling servo inits..." << std::endl;
+        std::cout << "[Servos]" << std::endl;
         for(std::map<std::string, upm_ft_servo>::const_iterator cit = fts_servo.begin();
                 cit != fts_servo.end(); ++cit)
         {
@@ -206,7 +206,7 @@ int main(int argc, char* argv[])
     // For each sensor which provides temperature functionality
     if (!fts_temperature.empty())
     {
-        std::cout << "Calling temperature inits..." << std::endl;
+        std::cout << "[Temperature Sensors]" << std::endl;
         for(std::map<std::string, upm_ft_temperature>::const_iterator cit = fts_temperature.begin();
                 cit != fts_temperature.end(); ++cit)
         {
@@ -216,13 +216,21 @@ int main(int argc, char* argv[])
     // For each sensor which provides temperature functionality
     if (!fts_ph.empty())
     {
-        std::cout << "Calling ph sensor..." << std::endl;
+        std::cout << "[pH Sensors]" << std::endl;
         for(std::map<std::string, upm_ft_ph>::const_iterator cit = fts_ph.begin();
                 cit != fts_ph.end(); ++cit)
         {
+            std::cout << "pH sensor: " << cit->first << std::endl;
+
             void *dev_ph = cit->second.upm_ph_init(0, 5.0);
-            cit->second.upm_ph_init(0, 5.0);
+            if (dev_ph == NULL) 
+            {
+                std::cerr << "Failed to initialize pH sensor, skipping "
+                    << cit->first << std::endl;
+                continue;
+            }
             float ph = 0.0;
+            std::cout <<"XXX after init" << std::endl;
             cit->second.upm_ph_get_value(dev_ph, &ph, UPM_PH_RAW);
             std::cout << cit->first << " Raw: " << ph << std::endl;
             cit->second.upm_ph_get_value(dev_ph, &ph, UPM_PH_NORMALIZED);

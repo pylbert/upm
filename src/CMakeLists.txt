@@ -10,9 +10,14 @@ file_to_list ("pythonswig_blacklist" PYTHONSWIG_BLACKLIST)
 file_to_list ("nodeswig_blacklist" NODESWIG_BLACKLIST)
 
 # UPM C header files
-set (upm_headers
-     upm.h
-     upm_sensor_ph.h)
+set (UPM_H_COMMON ${CMAKE_SOURCE_DIR}/include/upm.h
+                  ${CMAKE_SOURCE_DIR}/include/upm_controller_servo.h
+                  ${CMAKE_SOURCE_DIR}/include/upm_sensor_temperature.h
+                  ${CMAKE_SOURCE_DIR}/include/upm_sensor_pressure.h
+                  ${CMAKE_SOURCE_DIR}/include/upm_sensor_ph.h)
+
+# UPM C++ header files
+set (UPM_HPP_COMMON ${CMAKE_SOURCE_DIR}/include/upm.h)
 
 macro(subdirlist result curdir)
   file(GLOB children RELATIVE ${curdir} ${curdir}/*)
@@ -241,13 +246,12 @@ macro(upm_module_init)
     endif()
   endif ()
 
-
   link_directories (${MRAA_LIBDIR})
   add_library (${libname} SHARED ${module_src})
   foreach (linkflag ${ARGN})
     target_link_libraries (${libname} ${linkflag})
   endforeach ()
-  include_directories (${MRAA_INCLUDE_DIRS} . ..)
+  include_directories (${MRAA_INCLUDE_DIRS} . .. ${CMAKE_SOURCE_DIR}/include)
   target_link_libraries (${libname} ${MRAA_LIBRARIES})
   set_target_properties(
     ${libname}
@@ -310,4 +314,5 @@ foreach(subdir ${SUBDIRS})
     endif()
 endforeach()
 
-install (FILES ${upm_headers} DESTINATION include)
+install (FILES ${UPM_H_COMMON} DESTINATION include)
+install (FILES ${UPM_HPP_COMMON} DESTINATION include)

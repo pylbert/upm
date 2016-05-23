@@ -47,17 +47,13 @@ upm_ft_ph upm_get_ph_ft()
 
 upm_ph upm_dfrph_init(int16_t pin, float aref)
 {
-    printf("XXX .5");
     upm_ph dev = (upm_ph) malloc(sizeof(struct _upm_ph));
 
-    printf("XXX 0");
     if(dev == NULL) return NULL;
 
-    printf("XXX 1");
     /* Init aio pin */
     dev->aio = mraa_aio_init(pin);
 
-    printf("XXX 2");
     /* Get adc bit range */
     dev->m_aRes = (1 << mraa_aio_get_bit(dev->aio));
 
@@ -70,7 +66,6 @@ upm_ph upm_dfrph_init(int16_t pin, float aref)
         return NULL;
     }
 
-    printf("XXX 3");
     return dev;
 }
 
@@ -88,6 +83,8 @@ upm_result_t upm_dfrph_set_offset(upm_ph dev, float ph_offset)
 
 upm_result_t upm_dfrph_get_value(upm_ph dev, float *value, upm_ph_value_t unit)
 {
+//    printf("XXX value context: aRes: %d aRef: %f offset: %f\n",  dev->m_aRes, dev->m_aRef, dev->m_offset);
+//    return;
     /* Read the adc, first adc read can have weird data */
     mraa_aio_read(dev->aio);
     int counts = mraa_aio_read(dev->aio);
@@ -108,10 +105,6 @@ upm_result_t upm_dfrph_get_value(upm_ph dev, float *value, upm_ph_value_t unit)
             //upm_perror("Invalid pH units specified: ", unit);
             break;
     }
-
-    /* Scale adc to voltage */
-    //return dev->m_aRef  avg_counts / dev->m_aRes;
-    //return (3.5 * avg_counts + dev->m_offset);
 
     return UPM_SUCCESS;
 }
