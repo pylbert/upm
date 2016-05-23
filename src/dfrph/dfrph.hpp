@@ -26,6 +26,7 @@
 #include <iostream>
 #include <string>
 #include <mraa/aio.hpp>
+#include <ph.h>
 
 namespace upm {
   /**
@@ -96,7 +97,7 @@ namespace upm {
      * @param pin Analog pin to use
      * @param aref Analog reference voltage; default is 5.0 V
      */
-    DFRPH(int pin, float aref=5.0);
+    DFRPH(int pin, float aref = 5.0);
 
     /**
      * DFRPH destructor
@@ -125,18 +126,10 @@ namespace upm {
      * @param samples The number of samples to average over, default 15
      * @return The pH value detected
      */
-    float pH(unsigned int samples=15);
-
-  protected:
-    mraa::Aio m_aio;
+    float pH(unsigned int samples = 15);
 
   private:
-    float m_aref;
-    // ADC resolution
-    int m_aRes;
-
-    // voltage offset
-    float m_offset;
+    upm_ph _dev;
   };
 }
 

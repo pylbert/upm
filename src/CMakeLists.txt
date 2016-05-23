@@ -9,6 +9,11 @@ file_to_list ("javaswig_blacklist" JAVASWIG_BLACKLIST)
 file_to_list ("pythonswig_blacklist" PYTHONSWIG_BLACKLIST)
 file_to_list ("nodeswig_blacklist" NODESWIG_BLACKLIST)
 
+# UPM C header files
+set (upm_headers
+     upm.h
+     upm_sensor_ph.h)
+
 macro(subdirlist result curdir)
   file(GLOB children RELATIVE ${curdir} ${curdir}/*)
   set(dirlist "")
@@ -216,6 +221,27 @@ if (SWIG_FOUND)
 endif()
 
 macro(upm_module_init)
+  # Remove .cxx files if C only
+  if (NOT BUILDCPP)
+    # First pass, check for C files.  If none, skip
+    foreach(srcfile ${module_src})
+        set (found_c_source false)
+        if (${srcfile} MATCHES ".*c$" )
+            set (found_c_source true)
+        endif()
+    endforeach(srcfile)
+
+    if (found_c_source)
+        message (INFO " XXX Building C library: ${libname}")
+        foreach(srcfile ${module_src})
+            if (${srcfile} MATCHES ".*cxx" )
+                list(REMOVE_ITEM module_src ${srcfile})
+            endif()
+        endforeach(srcfile)
+    endif()
+  endif ()
+
+
   link_directories (${MRAA_LIBDIR})
   add_library (${libname} SHARED ${module_src})
   foreach (linkflag ${ARGN})
@@ -246,6 +272,7 @@ macro(upm_module_init)
   endif()
   install(TARGETS ${libname} DESTINATION ${LIB_INSTALL_DIR})
   install (FILES ${module_hpp} DESTINATION include/upm COMPONENT ${libname})
+  install (FILES ${module_h} DESTINATION include/upm COMPONENT ${libname})
 
   if (IPK)
     cpack_add_component (${libname} DISPLAY_NAME ${libname} REQUIRED INSTALL_TYPES all)
@@ -282,3 +309,5 @@ foreach(subdir ${SUBDIRS})
         add_subdirectory(${subdir})
     endif()
 endforeach()
+
+install (FILES ${upm_headers} DESTINATION include)

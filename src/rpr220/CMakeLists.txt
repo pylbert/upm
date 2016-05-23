@@ -1,5 +1,0 @@
-set (libname "rpr220")
-set (libdescription "upm rpr220 grove IR reflective sensor")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()

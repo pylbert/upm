@@ -48,6 +48,7 @@ set (upm_VERSION_STRING ${upm_VERSION_MAJOR}.${upm_VERSION_MINOR}.${upm_VERSION_
 
 set (CMAKE_SWIG_FLAGS "")
 
+option (BUILDCPP "Build C++ source." ON)
 option (BUILDDOC "Build all doc." OFF)
 option (BUILDSWIG "Build swig modules." ON)
 option (BUILDSWIGPYTHON "Build swig python modules." ON)
