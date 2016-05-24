@@ -4,8 +4,8 @@
  *  Created on: May 4, 2016
  *  Modified: Abhishek Malik <abhishek.malik@intel.com>
  */
-#ifndef UPM_SERVO_H_
-#define UPM_SERVO_H_
+#ifndef _UPM_CONTROLLER_SERVO_H_
+#define _UPM_CONTROLLER_SERVO_H_
 
 #include <stdarg.h>
 #include <mraa/pwm.h>
@@ -31,5 +31,5 @@ typedef struct upm_ft_servo {
 // Servo method helpers
 typedef upm_ft_servo (*func_get_upm_ft_servo)();
 
-#endif /* UPM_SERVO_H_ */
+#endif /* _UPM_CONTROLLER_SERVO_H_ */
 

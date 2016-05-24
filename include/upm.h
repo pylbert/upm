@@ -494,7 +494,7 @@ typedef struct upm_sensor_descriptor {
 // UPM helper methods
 typedef void (*func_get_upm_descriptor)(upm_sensor_descriptor* desc);
 
-const char * to_char(upm_sensor_category category)
+inline const char * to_char(upm_sensor_category category)
 {
     switch(category) {
         case UPM_PH:

@@ -1,5 +1,5 @@
-#ifndef _UPM_PRESSURE_H_
-#define _UPM_PRESSURE_H_
+#ifndef _UPM_SENSOR_PRESSURE_H_
+#define _UPM_SENSOR_PRESSURE_H_
 
 #include <stdarg.h>
 #include "upm.h"
@@ -16,4 +16,4 @@ typedef struct upm_ft_pressure {
 // Pressure sensor helper methods
 typedef upm_ft_pressure (*func_get_upm_ft_pressure)();
 
-#endif /* _UPM_PRESSURE_H_ */
+#endif /* _UPM_SENSOR_PRESSURE_H_ */
