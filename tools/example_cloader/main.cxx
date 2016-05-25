@@ -236,7 +236,7 @@ int main(int argc, char* argv[])
             cit->second.upm_ph_get_value(dev_ph, &ph, UPM_PH_NORMALIZED);
             std::cout << cit->first << " Normalized: " << ph << std::endl;
             cit->second.upm_ph_get_value(dev_ph, &ph, UPM_PH_PH);
-            std::cout << cit->first << " PH: " << ph << std::endl;
+            std::cout << cit->first << " pH: " << ph << std::endl;
         }
     }
 
