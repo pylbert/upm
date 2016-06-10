@@ -1,5 +1,1 @@
-set (libname "tsl2561")
-set (libdescription "upm tsl2561")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "tsl2561")set (libdescription "upm tsl2561")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

@@ -1,5 +1,1 @@
-set (libname "pulsensor")
-set (libdescription "upm PULSENSOR")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "pulsensor")set (libdescription "upm PULSENSOR")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

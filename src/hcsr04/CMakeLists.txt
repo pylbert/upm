@@ -1,5 +1,1 @@
-set (libname "hcsr04")
-set (libdescription "upm proximity sensor")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "hcsr04")set (libdescription "upm proximity sensor")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

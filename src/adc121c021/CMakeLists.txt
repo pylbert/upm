@@ -1,5 +1,1 @@
-set (libname "adc121c021")
-set (libdescription "upm adc121c021 I2C ADC converter module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "adc121c021")set (libdescription "upm adc121c021 I2C ADC converter module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

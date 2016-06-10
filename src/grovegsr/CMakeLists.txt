@@ -1,5 +1,1 @@
-set (libname "grovegsr")
-set (libdescription "upm grovegsr galvanic skin response sensor module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "grovegsr")set (libdescription "upm grovegsr galvanic skin response sensor module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

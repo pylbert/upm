@@ -1,5 +1,1 @@
-set (libname "bno055")
-set (libdescription "Bosch bno055 intelligent orientation sensor 9dof fusion")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "bno055")set (libdescription "Bosch bno055 intelligent orientation sensor 9dof fusion")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

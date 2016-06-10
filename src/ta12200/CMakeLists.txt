@@ -1,5 +1,1 @@
-set (libname "ta12200")
-set (libdescription "upm ta12200 current transformer module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "ta12200")set (libdescription "upm ta12200 current transformer module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

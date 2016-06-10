@@ -1,8 +1,1 @@
-%module jsupm_waterlevel
-%include "../upm.i"
-
-%{
-    #include "waterlevel.hpp"
-%}
-
-%include "waterlevel.hpp"
+%module jsupm_waterlevel%include "../upm.i"%{    #include "waterlevel.hpp"%}%include "waterlevel.hpp"

@@ -1,6 +1,1 @@
-include_directories(..)
-set (libname "lp8860")
-set (libdescription “LED lighting controller”)
-set (module_src ${libname}.cxx mraa-utils.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+include_directories(..)set (libname "lp8860")set (libdescription “LED lighting controller”)set (module_src ${libname}.cxx mraa-utils.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

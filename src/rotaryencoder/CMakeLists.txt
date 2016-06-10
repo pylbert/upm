@@ -1,5 +1,1 @@
-set (libname "rotaryencoder")
-set (libdescription "upm grove rotary encoder module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "rotaryencoder")set (libdescription "upm grove rotary encoder module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

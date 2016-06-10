@@ -1,5 +1,1 @@
-set (libname "mg811")
-set (libdescription "upm DFRobot CO2 sensor")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "mg811")set (libdescription "upm DFRobot CO2 sensor")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

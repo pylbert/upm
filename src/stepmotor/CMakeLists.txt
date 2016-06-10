@@ -1,6 +1,1 @@
-set (libname "stepmotor")
-set (libdescription "upm STEPMOTOR")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
-target_link_libraries(${libname} rt)
+set (libname "stepmotor")set (libdescription "upm STEPMOTOR")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()target_link_libraries(${libname} rt)

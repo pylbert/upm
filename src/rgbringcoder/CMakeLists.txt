@@ -1,5 +1,1 @@
-set (libname "rgbringcoder")
-set (libdescription "upm Sparkfun RGB RingCoder")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "rgbringcoder")set (libdescription "upm Sparkfun RGB RingCoder")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

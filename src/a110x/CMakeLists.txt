@@ -1,5 +1,1 @@
-set (libname "a110x")
-set (libdescription "upm a110x sensor module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "a110x")set (libdescription "upm a110x sensor module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()
