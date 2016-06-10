@@ -1,5 +1,1 @@
-set (libname "ublox6")
-set (libdescription "upm u-blox 6 GPS UART support module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "ublox6")set (libdescription "upm u-blox 6 GPS UART support module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

@@ -1,5 +1,1 @@
-set (libname "mhz16")
-set (libdescription "upm grove CO2 sensor")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "mhz16")set (libdescription "upm grove CO2 sensor")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

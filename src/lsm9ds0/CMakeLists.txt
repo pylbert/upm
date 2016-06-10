@@ -1,5 +1,1 @@
-set (libname "lsm9ds0")
-set (libdescription "gyro, accelerometer and magnometer sensor based on lsm9ds0")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "lsm9ds0")set (libdescription "gyro, accelerometer and magnometer sensor based on lsm9ds0")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

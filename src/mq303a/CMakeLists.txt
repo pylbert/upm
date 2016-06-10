@@ -1,5 +1,1 @@
-set (libname "mq303a")
-set (libdescription "upm mq303a module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "mq303a")set (libdescription "upm mq303a module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

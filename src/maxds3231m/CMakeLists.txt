@@ -1,5 +1,1 @@
-set (libname "maxds3231m")
-set (libdescription "realtime clock sensor from MAX family")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "maxds3231m")set (libdescription "realtime clock sensor from MAX family")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

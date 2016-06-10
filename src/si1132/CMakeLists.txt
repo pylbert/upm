@@ -1,6 +1,1 @@
-include_directories(..)
-set (libname "si1132")
-set (libdescription "upm Si1132")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+include_directories(..)set (libname "si1132")set (libdescription "upm Si1132")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

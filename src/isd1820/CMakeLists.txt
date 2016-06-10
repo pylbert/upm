@@ -1,5 +1,1 @@
-set (libname "isd1820")
-set (libdescription "upm grove recorder")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "isd1820")set (libdescription "upm grove recorder")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

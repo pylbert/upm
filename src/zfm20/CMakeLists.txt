@@ -1,5 +1,1 @@
-set (libname "zfm20")
-set (libdescription "upm grove zfm20 fingerprint sensor module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "zfm20")set (libdescription "upm grove zfm20 fingerprint sensor module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

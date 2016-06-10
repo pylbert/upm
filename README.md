@@ -14,7 +14,7 @@ identify the sensor, the I/O protocol used and the pin location of the sensor.
 C++ interfaces have been defined for the following sensor/actuator types, but
 they are subject to change:
 
-* Light controller 
+* Light controller
 * Light sensor
 * Temperature sensor
 * Humidity sensor
@@ -38,28 +38,28 @@ A sensor/actuator is expected to work as such (here is the MMA7660 accelerometer
 
   // enable 64 samples per second
   accel->setSampleRate(upm::MMA7660::AUTOSLEEP_64);
-  
+
   // place device into active mode
   accel->setModeActive();
 
   while (shouldRun)
     {
       int x, y, z;
-      
+
       accel->getRawValues(&x, &y, &z);
-      cout << "Raw values: x = " << x 
+      cout << "Raw values: x = " << x
            << " y = " << y
            << " z = " << z
            << endl;
-      
+
       float ax, ay, az;
-      
+
       accel->getAcceleration(&ax, &ay, &az);
-      cout << "Acceleration: x = " << ax 
+      cout << "Acceleration: x = " << ax
            << "g y = " << ay
            << "g z = " << az
            << "g" << endl;
-      
+
       usleep(500000);
     }
 ```

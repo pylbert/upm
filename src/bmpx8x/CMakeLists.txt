@@ -1,5 +1,1 @@
-set (libname "bmpx8x")
-set (libdescription "upm BMPX8X")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "bmpx8x")set (libdescription "upm BMPX8X")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

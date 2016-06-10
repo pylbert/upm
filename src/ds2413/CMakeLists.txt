@@ -1,5 +1,1 @@
-set (libname "ds2413")
-set (libdescription "upm DS2413 1-wire Dual Channel Addressable Switch module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "ds2413")set (libdescription "upm DS2413 1-wire Dual Channel Addressable Switch module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

@@ -1,5 +1,1 @@
-set (libname "loudness")
-set (libdescription "upm loudness sensors")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "loudness")set (libdescription "upm loudness sensors")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

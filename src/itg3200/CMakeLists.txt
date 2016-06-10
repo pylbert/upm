@@ -1,5 +1,1 @@
-set (libname "itg3200")
-set (libdescription "libupm Digital Gyro")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "itg3200")set (libdescription "libupm Digital Gyro")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()

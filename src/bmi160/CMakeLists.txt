@@ -1,5 +1,1 @@
-set (libname "bmi160")
-set (libdescription "Bosch BMI160 Accelerometer, Gyroscope and BMM150 Magnetometer")
-set (module_src ${libname}.cxx bosch_bmi160.c)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "bmi160")set (libdescription "Bosch BMI160 Accelerometer, Gyroscope and BMM150 Magnetometer")set (module_src ${libname}.cxx bosch_bmi160.c)set (module_hpp ${libname}.hpp)upm_module_init()

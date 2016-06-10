@@ -1,8 +1,1 @@
-%module javaupm_smartdrive
-%include "../upm.i"
-
-%{
-    #include "smartdrive.hpp"
-%}
-
-%include "smartdrive.hpp"
+%module javaupm_smartdrive%include "../upm.i"%{    #include "smartdrive.hpp"%}%include "smartdrive.hpp"

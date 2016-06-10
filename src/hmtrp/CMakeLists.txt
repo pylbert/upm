@@ -1,5 +1,1 @@
-set (libname "hmtrp")
-set (libdescription "upm grove serial rf pro (hmtrp) module")
-set (module_src ${libname}.cxx)
-set (module_hpp ${libname}.hpp)
-upm_module_init()
+set (libname "hmtrp")set (libdescription "upm grove serial rf pro (hmtrp) module")set (module_src ${libname}.cxx)set (module_hpp ${libname}.hpp)upm_module_init()
