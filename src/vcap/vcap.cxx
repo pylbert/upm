@@ -42,7 +42,7 @@ VCAP::VCAP(string videoDev) :
 {
   memset(&m_caps, 0, sizeof(struct v4l2_capability));
   memset(&m_format, 0, sizeof(struct v4l2_format));
-  
+
   m_debugging = false;
   m_bufferLen = 0;
   m_videoDevice = videoDev;
@@ -78,7 +78,7 @@ bool VCAP::initVideoDevice()
       cerr << __FUNCTION__ << ": open failed: " << strerror(errno) << endl;
       return false;
     }
-  
+
   if (!checkCapabilities())
     {
       close(m_fd);
@@ -94,12 +94,12 @@ bool VCAP::initVideoDevice()
 int VCAP::xioctl(int fd, int request, void* argp)
 {
   int r;
-  
+
   do {
     r = ioctl(fd, request, argp);
   }
   while (r == -1 && errno == EINTR);
-  
+
   return r;
 }
 
@@ -111,7 +111,7 @@ bool VCAP::checkCapabilities()
            << strerror(errno) << endl;
       return false;
     }
-  
+
   if (m_debugging)
     {
       cerr << "Driver: " << m_caps.driver << endl;
@@ -160,7 +160,7 @@ bool VCAP::setResolution(int width, int height)
   m_format.fmt.pix.height = m_height;
   m_format.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
   m_format.fmt.pix.field = V4L2_FIELD_ANY;
-        
+
   if (xioctl(m_fd, VIDIOC_S_FMT, &m_format) < 0)
     {
       cerr << __FUNCTION__ << ": ioctl(VIDIOC_S_FMT) failed: "
@@ -194,7 +194,7 @@ bool VCAP::setResolution(int width, int height)
 
       m_width = m_format.fmt.pix.width;
     }
-  
+
   if (m_format.fmt.pix.height != m_height)
     {
       if (m_debugging)
@@ -213,7 +213,7 @@ bool VCAP::setResolution(int width, int height)
 
   return true;
 }
- 
+
 bool VCAP::allocBuffer()
 {
   struct v4l2_requestbuffers rb;
@@ -223,7 +223,7 @@ bool VCAP::allocBuffer()
   rb.count = 1;
   rb.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
   rb.memory = V4L2_MEMORY_MMAP;
- 
+
   if (xioctl(m_fd, VIDIOC_REQBUFS, &rb) < 0)
     {
       if (errno == EINVAL)
@@ -234,10 +234,10 @@ bool VCAP::allocBuffer()
         }
       cerr << __FUNCTION__ << ": ioctl(VIDIOC_REQBUFS) failed: "
            << strerror(errno) << endl;
-      
+
       return false;
     }
- 
+
   // get the buffer and mmap it
   struct v4l2_buffer mbuf;
   memset(&mbuf, 0, sizeof(mbuf));
@@ -252,10 +252,10 @@ bool VCAP::allocBuffer()
            << strerror(errno) << endl;
       return false;
     }
- 
+
   // map it
-  m_buffer = (unsigned char *)mmap(NULL, mbuf.length, 
-                                   PROT_READ | PROT_WRITE, MAP_SHARED, 
+  m_buffer = (unsigned char *)mmap(NULL, mbuf.length,
+                                   PROT_READ | PROT_WRITE, MAP_SHARED,
                                    m_fd, mbuf.m.offset);
 
   if (m_buffer == MAP_FAILED)
@@ -267,7 +267,7 @@ bool VCAP::allocBuffer()
 
   // we'll need this when unmapping
   m_bufferLen = mbuf.length;
-  
+
   return true;
 }
 
@@ -287,7 +287,7 @@ void VCAP::releaseBuffer()
   rb.count = 0;
   rb.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
   rb.memory = V4L2_MEMORY_MMAP;
- 
+
   if (xioctl(m_fd, VIDIOC_REQBUFS, &rb) < 0)
     {
       cerr << __FUNCTION__ << ": ioctl(VIDIOC_REQBUFS) failed while freeing: "
@@ -340,34 +340,34 @@ bool VCAP::YUYV2JPEG(FILE *file)
     {
       int x;
       unsigned char *ptr = row_buffer;
-      
+
       for (x = 0; x < m_width; x++)
         {
           int r, g, b;
           int y, u, v;
-          
+
           if (!z)
             y = yuyv[0] << 8;
           else
             y = yuyv[2] << 8;
           u = yuyv[1] - 128;
           v = yuyv[3] - 128;
-          
+
           r = (y + (359 * v)) >> 8;
           g = (y - (88 * u) - (183 * v)) >> 8;
           b = (y + (454 * u)) >> 8;
-          
+
           *(ptr++) = CLAMP(r, 0, 255);
           *(ptr++) = CLAMP(g, 0, 255);
           *(ptr++) = CLAMP(b, 0, 255);
-          
+
           if (z++)
             {
               z = 0;
               yuyv += 4;
             }
         }
-      
+
       row_pointer[0] = row_buffer;
       jpeg_write_scanlines(&jpgInfo, row_pointer, 1);
     }
@@ -404,7 +404,7 @@ bool VCAP::saveImage(string filename)
            << strerror(errno) << endl;
       return false;
     }
-  
+
   YUYV2JPEG(file);
   fclose(file);
 
@@ -455,7 +455,7 @@ bool VCAP::doCaptureImage()
 
       return false;
     }
-  
+
   // enable streaming
   if (xioctl(m_fd, VIDIOC_STREAMON, &buf.type) < 0)
     {
@@ -512,7 +512,7 @@ bool VCAP::doCaptureImage()
 
       return false;
     }
-    
+
   m_imageCaptured = true;
 
   return true;
