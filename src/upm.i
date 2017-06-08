@@ -3,7 +3,7 @@
 %include "upm_exception.i"
 
 %{
-#include "version.hpp"
+    #include "version.hpp"
 %}
 %include "version.hpp"
 

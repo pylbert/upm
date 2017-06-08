@@ -1,12 +1,6 @@
 %module javaupm_ims
-%include "../upm.i"
 
-%{
-    #include "ims.hpp"
-%}
-
-%include "ims_defs.h"
-%include "ims.hpp"
+%include "common.i"
 
 %pragma(java) jniclasscode=%{
     static {
