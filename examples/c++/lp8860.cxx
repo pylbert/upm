@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string>
 
-#include "iLightController.hpp"
+#include "LightController.hpp"
 #include "lp8860.hpp"
 
 #define EDISON_I2C_BUS 1   // Edison I2C-1

@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "interfaces/iLightController.hpp"
+#include "LightController.hpp"
 // #include "mraa/gpio.hpp"
 #include "mraa/pwm.hpp"
 
@@ -32,7 +32,7 @@ namespace upm
 /**
  * @brief Meanwell HLG150H Lighting Power Supply Controller
  * @defgroup hlg150h libupm-hlg150h
- * @ingroup pwm light ilightcontroller
+ * @ingroup pwm light lightcontroller
  */
 
 /**
@@ -60,7 +60,6 @@ public:
    ~HLG150H();
 
    virtual int getBrightness();
-   const char* getModuleName() { return "hlg150h"; }
    void setPowerOn();
    void setPowerOff();
    bool isPowered();

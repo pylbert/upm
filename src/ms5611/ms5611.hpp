@@ -22,8 +22,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "interfaces/iPressureSensor.hpp"
-#include "interfaces/iTemperatureSensor.hpp"
+#include "Pressure.hpp"
+#include "Temperature.hpp"
 #include "mraa/i2c.hpp"
 
 namespace upm
@@ -33,7 +33,7 @@ namespace upm
 /**
  * @brief MS5611 Barometric Pressure Sensor
  * @defgroup ms5611 libupm-ms5611
- * @ingroup meas i2c temp pressure ipressuresensor itemperaturesensor
+ * @ingroup meas i2c temp pressure pressure temperature
  */
 
 /**
@@ -45,7 +45,7 @@ namespace upm
  * @man meas
  * @con i2c
  * @web http://www.amsys.info/products/ms5611.htm
- * @if ipressuresensor itemperaturesensor
+ * @if pressure temperature
  *
  * @brief API for MS5611 Barometric Pressure Sensor library
  *
@@ -58,7 +58,7 @@ namespace upm
  * @snippet ms5611.cxx Interesting
  */
 
-class MS5611 : public IPressureSensor, public ITemperatureSensor
+class MS5611 : public Pressure, public Temperature
 {
 public:
    enum OsrMode
@@ -68,10 +68,21 @@ public:
 
    MS5611(int i2cBus = 0, int address = MS5611_ADDRESS);
    ~MS5611();
-   virtual const char* getModuleName() { return "ms5611"; }
    void setOverSampling(OsrMode osrMode);
    int getTemperatureCelsius();
    int getPressurePa();
+
+    /** Return the name of this device */
+    virtual std::string Name () {return "ms5611";}
+
+    /** Return the description of this device */
+    virtual std::string Description () {return "Barometric pressure and temperature sensor";}
+
+    /* Provide an implementation of a method to get sensor values by source */
+    virtual std::map<std::string, float> TemperatureForSources(std::vector<std::string> sources);
+
+    /* Provide an implementation of a method to get sensor values by source */
+    virtual std::map<std::string, float> PressureForSources(std::vector<std::string> sources);
 
 private:
    /* Disable implicit copy and assignment operators */

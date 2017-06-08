@@ -24,13 +24,13 @@
 
 
 #include "mraa/i2c.hpp"
-#include "interfaces/iCO2Sensor.hpp"
+#include "Gas.hpp"
 
 namespace upm {
 /**
  * @brief Amphenol Telaire 6713 Series CO2 Module
  * @defgroup t6713 libupm-t6713
- * @ingroup i2c amphenol gaseous ico2sensor
+ * @ingroup i2c amphenol gaseous gas
  */
 
 /**
@@ -42,7 +42,7 @@ namespace upm {
  * @man amphenol
  * @web http://amphenol-sensors.com/en/products/co2/co2-modules/3215-t6700
  * @con i2c
- * @if ico2sensor
+ * @if gas
  *
  * @brief C++ API for Amphenol Telaire 6713 Series CO2 Module
  *
@@ -104,7 +104,7 @@ namespace t6713_co2
     }FUNCTION_CODES;
 }//namespace t6713_co2
 
-class T6713 : public ICO2Sensor {
+class T6713 : public Gas {
     public:
         /**
         * Instantiates a T6713 object
@@ -119,11 +119,6 @@ class T6713 : public ICO2Sensor {
         virtual ~T6713 () {};
 
         /**
-        * Returns sensor module name
-        */
-        virtual const char* getModuleName() { return "t6713"; }
-
-        /**
         * Get relative humidity measurement.
         */
         uint16_t getPpm ();
@@ -132,6 +127,14 @@ class T6713 : public ICO2Sensor {
         */
         uint16_t getFirmwareRevision();
 
+        /** Return the name of this device */
+        virtual std::string Name () {return "T6713";}
+
+        /** Return the description of this device */
+        virtual std::string Description () {return "I2C/UART high accuracy CO2 sensor";}
+
+        /* Provide an implementation of a method to get sensor values by source */
+        virtual std::map<std::string, float> GasForSources(std::vector<std::string> sources);
 
     private:
         mraa::Result runCommand(t6713_co2::MODBUS_COMMANDS command);

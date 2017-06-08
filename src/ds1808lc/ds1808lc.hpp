@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "iLightController.hpp"
+#include "LightController.hpp"
 #include "mraa/i2c.hpp"
 
 namespace upm
@@ -30,7 +30,7 @@ namespace upm
 /**
  * @brief DS1808LC Lighting Controller
  * @defgroup DS1808LC libupm-ds1808lc
- * @ingroup ds1808lc i2c maxim light ilightcontroller
+ * @ingroup ds1808lc i2c maxim light lightcontroller
  */
 
 /**
@@ -57,7 +57,6 @@ public:
    DS1808LC(int gpioPower, int i2cBus);
    ~DS1808LC();
 
-   const char* getModuleName() { return "ds1808lc"; }
    bool isPowered();
    void setPowerOn();
    void setPowerOff();

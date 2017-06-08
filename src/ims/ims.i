@@ -1,4 +1,8 @@
 %include "../common_top.i"
+%include "Mraa.i"
+%include "Light.i"
+%include "Moisture.i"
+%include "Temperature.i"
 
 /* BEGIN Java syntax  ------------------------------------------------------- */
 #ifdef SWIGJAVA

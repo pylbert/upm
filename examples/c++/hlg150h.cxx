@@ -3,7 +3,7 @@
 #include <string>
 
 #include "hlg150h.hpp"
-#include "iLightController.hpp"
+#include "LightController.hpp"
 
 #define HLG150H_GPIO_RELAY 21
 #define HLG150H_GPIO_PWM 22

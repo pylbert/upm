@@ -27,7 +27,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "iCO2Sensor.hpp"
+#include "Gas.hpp"
 #include "mraa/common.h"
 #include "t6713.hpp"
 #include "upm_utilities.h"
@@ -39,21 +39,21 @@
 int
 main()
 {
-    /* Create an instance of the T6713 sensor */
-    upm::T6713 sensor(EDISON_I2C_BUS);
+    /* Create an instance of the T6713 CO2 sensor */
+    upm::T6713 co2(EDISON_I2C_BUS);
 
-    /* Show usage from the ICO2Sensor interface */
-    upm::ICO2Sensor* cO2Sensor = static_cast<upm::ICO2Sensor*>(&sensor);
+    /* Show usage from the Gas interface */
+    upm::Gas* gas = static_cast<upm::Gas*>(&co2);
 
-    if (cO2Sensor == NULL) {
+    if (gas == NULL) {
         std::cout << "CO2 sensor not detected" << std::endl;
         return 1;
     }
-    std::cout << "CO2 sensor " << cO2Sensor->getModuleName() << " detected" << std::endl;
+    std::cout << "CO2 sensor " << gas->Name() << " detected" << std::endl;
     while (true) {
         try {
-            uint16_t value = cO2Sensor->getPpm();
-            std::cout << "CO2 level = " << value << " ppm" << std::endl;
+            uint16_t value = gas->GasForSource(gas->Sources()[0]);
+            std::cout << "CO2 level = " << value << gas->Units()[0] << std::endl;
         } catch (std::exception& e) {
             std::cerr << e.what() << std::endl;
         }
