@@ -131,5 +131,8 @@ namespace upm {
     hka5_context m_hka5;
 
   private:
+    /* Hide the copy and assignment operators */
+    HKA5(const HKA5&) = delete;
+    HKA5 &operator=(const HKA5&) = delete;
   };
 }

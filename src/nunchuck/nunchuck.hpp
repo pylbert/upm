@@ -124,10 +124,11 @@ namespace upm {
     bool buttonZ;
 
   protected:
-      nunchuck_context m_nunchuck;
+    nunchuck_context m_nunchuck;
 
   private:
+    /* Hide the copy and assignment operators */
+    NUNCHUCK(const NUNCHUCK&) = delete;
+    NUNCHUCK &operator=(const NUNCHUCK&) = delete;
   };
 }
-
-

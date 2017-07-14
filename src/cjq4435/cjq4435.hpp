@@ -120,6 +120,9 @@ namespace upm {
         cjq4435_context m_cjq4435;
 
     private:
+        /* Hide the copy and assignment operators */
+        CJQ4435(const CJQ4435&) = delete;
+        CJQ4435 &operator=(const CJQ4435&) = delete;
     };
 }
 

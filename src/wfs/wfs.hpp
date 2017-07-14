@@ -129,5 +129,8 @@ class WFS {
         wfs_context m_wfs;
 
     private:
+        /* Hide the copy and assignment operators */
+        WFS(const WFS&) = delete;
+        WFS &operator=(const WFS&) = delete;
 };
 }

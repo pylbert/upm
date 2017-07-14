@@ -182,6 +182,11 @@ namespace upm {
 
     protected:
         md_context m_md;
+
+    private:
+        /* Hide the copy and assignment operators */
+        MD(const MD&) = delete;
+        MD &operator=(const MD&) = delete;
     };
 }
 

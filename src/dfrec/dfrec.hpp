@@ -184,5 +184,8 @@ namespace upm {
     dfrec_context m_dfrec;
 
   private:
+    /* Hide the copy and assignment operators */
+    DFREC(const DFREC&) = delete;
+    DFREC &operator=(const DFREC&) = delete;
   };
 }

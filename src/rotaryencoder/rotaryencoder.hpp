@@ -88,6 +88,10 @@ namespace upm {
         int position();
 
     private:
+        /* Hide the copy and assignment operators */
+        RotaryEncoder(const RotaryEncoder&) = delete;
+        RotaryEncoder &operator=(const RotaryEncoder&) = delete;
+
         rotaryencoder_context m_rotaryencoder;
     };
 }

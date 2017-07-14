@@ -75,6 +75,10 @@ namespace upm {
         ppd42ns_dust_data getData();
 
     private:
+        /* Hide the copy and assignment operators */
+        PPD42NS(const PPD42NS&) = delete;
+        PPD42NS &operator=(const PPD42NS&) = delete;
+
         ppd42ns_context m_ppd42ns;
     };
 }

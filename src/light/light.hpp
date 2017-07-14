@@ -167,5 +167,8 @@ namespace upm {
         light_context m_light;
 
     private:
+        /* Hide the copy and assignment operators */
+        Light(const Light&) = delete;
+        Light &operator=(const Light&) = delete;
     };
 }

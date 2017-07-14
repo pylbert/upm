@@ -90,5 +90,8 @@ namespace upm {
         mb704x_context m_mb704x;
 
     private:
+        /* Hide the copy and assignment operators */
+        MB704X(const MB704X&) = delete;
+        MB704X &operator=(const MB704X&) = delete;
     };
 }

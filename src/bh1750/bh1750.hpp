@@ -128,7 +128,8 @@ namespace upm {
     uint16_t readData();
 
   private:
+    /* Hide the copy and assignment operators */
+    BH1750(const BH1750&) = delete;
+    BH1750 &operator=(const BH1750&) = delete;
   };
 }
-
-

@@ -74,6 +74,10 @@ public:
    int getPressurePa();
 
 private:
+   /* Hide the copy and assignment operators */
+   MS5611(const MS5611&) = delete;
+   MS5611 &operator=(const MS5611&) = delete;
+
    int promCrc4();
    uint32_t readADC(int adcReg);
    void delayms(int millisecs);

@@ -125,6 +125,9 @@ namespace upm {
         my9221_context m_my9221;
 
     private:
+        /* Hide the copy and assignment operators */
+        MY9221(const MY9221&) = delete;
+        MY9221 &operator=(const MY9221&) = delete;
     };
 
 }

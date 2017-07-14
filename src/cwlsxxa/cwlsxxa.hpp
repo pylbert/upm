@@ -165,6 +165,10 @@ namespace upm {
 
 
   private:
+    /* Hide the copy and assignment operators */
+    CWLSXXA(const CWLSXXA&) = delete;
+    CWLSXXA &operator=(const CWLSXXA&) = delete;
+
     float m_aref;
     float m_rResistor;
     int m_aResTemp;

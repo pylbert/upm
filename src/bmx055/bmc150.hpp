@@ -193,5 +193,8 @@ namespace upm {
         BMM150 *m_mag;
 
     private:
+        /* Hide the copy and assignment operators */
+        BMC150(const BMC150&) = delete;
+        BMC150 &operator=(const BMC150&) = delete;
     };
 }

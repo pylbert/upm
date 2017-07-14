@@ -256,5 +256,8 @@ namespace upm
         upm_result_t data(uint8_t data);
 
     private:
+        /* Hide the copy and assignment operators */
+        Lcm1602(const Lcm1602&) = delete;
+        Lcm1602 &operator=(const Lcm1602&) = delete;
     };
 }

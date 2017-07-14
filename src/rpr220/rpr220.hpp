@@ -104,6 +104,10 @@ namespace upm {
         void uninstallISR();
 
     private:
+        /* Hide the copy and assignment operators */
+        RPR220(const RPR220&) = delete;
+        RPR220 &operator=(const RPR220&) = delete;
+
         rpr220_context m_rpr220;
 
 #if defined(SWIGJAVA) || defined(JAVACALLBACK)
