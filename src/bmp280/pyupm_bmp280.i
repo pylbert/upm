@@ -7,8 +7,4 @@
 %include "bmp280_doc.i"
 #endif
 
-%include "iHumiditySensor.hpp"
-%include "iPressureSensor.hpp"
-%include "iTemperatureSensor.hpp"
-
 %include "common.i"
