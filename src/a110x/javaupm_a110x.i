@@ -18,3 +18,11 @@
         }
     }
 %}
+
+%extend upm::A110X {
+    void installISR(jobject runnable)
+    {
+        $self->installISR(mraa_java_isr_callback, runnable);
+    }
+}
+
