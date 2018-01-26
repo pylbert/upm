@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovewater
-%include "../upm.i"
 
-%{
-    #include "grovewater.hpp"
-%}
-
-%include "grovewater.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovewater)

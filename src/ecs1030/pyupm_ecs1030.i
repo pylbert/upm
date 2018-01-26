@@ -1,11 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_ecs1030
-%include "../upm.i"
 
 %include "stdint.i"
 
-%include "ecs1030.hpp"
-%{
-    #include "ecs1030.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

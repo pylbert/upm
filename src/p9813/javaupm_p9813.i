@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_p9813
 
-%include "../upm.i"
 %include "typemaps.i"
 
-%{
-    #include "p9813.hpp"
-%}
-%include "p9813.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_p9813)

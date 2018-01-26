@@ -1,9 +1,4 @@
 %module javaupm_lsm303dlh
-%include "../upm.i"
-
-%{
-    #include "lsm303dlh.hpp"
-%}
 
 %typemap(jni) int16_t* "jshortArray"
 %typemap(jstype) int16_t* "short[]"
@@ -18,6 +13,6 @@
     JCALL4(SetShortArrayRegion, jenv, $result, 0, 3, (jshort*)$1);
 }
 
-%include "lsm303dlh.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lsm303dlh)

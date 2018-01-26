@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_dfrph
-%include "../upm.i"
 
-%{
-    #include "dfrph.hpp"
-%}
-
-%include "dfrph.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_dfrph)

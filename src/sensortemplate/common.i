@@ -1,5 +1,5 @@
 /* Include global UPM interface file */
-%include "../upm.i"
+%include "../common_top.i"
 
 %{
     /* SWIG preprocessor copies this directly to the output wrapper*/

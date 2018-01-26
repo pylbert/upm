@@ -1,10 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_rf22
-%include "../upm.i"
+
 %include "../carrays_uint8_t.i"
 
-%include "rf22.hpp"
-%{
-    #include "rf22.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

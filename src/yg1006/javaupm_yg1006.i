@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_yg1006
-%include "../upm.i"
 
-%{
-    #include "yg1006.hpp"
-%}
-
-%include "yg1006.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_yg1006)

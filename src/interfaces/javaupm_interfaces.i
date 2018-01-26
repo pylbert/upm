@@ -1,6 +1,7 @@
 %module javaupm_interfaces
 
 %import "../_upm.i"
+%include "common.i"
 
 %include javaupm_iModuleStatus.i
 %include javaupm_iADC.i
@@ -10,5 +11,7 @@
 %include javaupm_iLightSensor.i
 %include javaupm_iPressureSensor.i
 %include javaupm_iTemperatureSensor.i
+
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_interfaces)

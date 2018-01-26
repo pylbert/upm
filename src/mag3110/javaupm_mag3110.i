@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_mag3110
-%include "../upm.i"
 
-%{
-    #include "mag3110.hpp"
-%}
-
-%include "mag3110.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mag3110)

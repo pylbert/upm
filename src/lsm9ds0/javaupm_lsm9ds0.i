@@ -1,6 +1,5 @@
 %module javaupm_lsm9ds0
-%include "../upm.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 %include "arrays_java.i";
 %include "../java_buffer.i"
@@ -38,10 +37,6 @@
 %ignore getGyroscope(float *, float *, float *);
 %ignore getMagnetometer(float *, float *, float *);
 
-%{
-    #include "lsm9ds0.hpp"
-%}
-
 %ignore installISR(LSM6DSL_INTERRUPT_PINS_T , int ,  mraa::Edge ,  void *, void *);
 
 %extend upm::LSM9DS0 {
@@ -60,6 +55,6 @@
     }
 }
 
-%include "lsm9ds0.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lsm9ds0)

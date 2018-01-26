@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_cjq4435
-%include "../upm.i"
 
-%{
-    #include "cjq4435.hpp"
-%}
-
-%include "cjq4435.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_cjq4435)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_flex
-%include "../upm.i"
 
-%{
-    #include "flex.hpp"
-%}
-
-%include "flex.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_flex)

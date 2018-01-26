@@ -1,8 +1,9 @@
 %module javaupm_bmg160
-%include "../upm.i"
+
 %include "typemaps.i"
 %include "../upm_javastdvector.i"
 
+%ignore installISR (BMG160_INTERRUPT_PINS_T , int   mraa::Edge ,  void *, void *);
 %ignore getGyroscope(float *, float *, float *);
 
 %typemap(javaimports) SWIGTYPE %{
@@ -20,18 +21,10 @@ import java.lang.Float;
 
 %template(floatVector) std::vector<float>;
 
-%{
-    #include "bmg160.hpp"
-    #include "bmg160_defs.h"
-%}
-%include "bmg160_defs.h"
-%include "bmg160.hpp"
-
-
-%ignore installISR (BMG160_INTERRUPT_PINS_T , int   mraa::Edge ,  void *, void *);
+%include "common.i"
 
 %define INTERRUPT BMG160_INTERRUPT_PINS_T
 %enddef
-JAVA_ADD_INSTALLISR_INTERRUPT(upm::BMG160)
 
+JAVA_ADD_INSTALLISR_INTERRUPT(upm::BMG160)
 JAVA_JNI_LOADLIBRARY(javaupm_bmg160)

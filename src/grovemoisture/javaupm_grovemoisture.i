@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovemoisture
-%include "../upm.i"
 
-%{
-    #include "grovemoisture.hpp"
-%}
-
-%include "grovemoisture.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovemoisture)

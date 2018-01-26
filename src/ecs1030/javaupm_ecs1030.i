@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_ecs1030
-%include "../upm.i"
 
-%{
-    #include "ecs1030.hpp"
-%}
-
-%include "ecs1030.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ecs1030)

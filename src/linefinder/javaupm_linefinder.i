@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_linefinder
-%include "../upm.i"
 
-%{
-    #include "linefinder.hpp"
-%}
-
-%include "linefinder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_linefinder)

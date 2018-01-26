@@ -1,15 +1,8 @@
 %module javaupm_bmi160
-%include "../upm.i"
+
 %include "typemaps.i"
 %include "arrays_java.i"
 %include "../java_buffer.i"
-%include "std_string.i"
-
-%include "bmi160_defs.h"
-%{
-    #include "bmi160.hpp"
-%}
-
 
 %typemap(jni) float * "jfloatArray"
 %typemap(jstype) float * "float[]"
@@ -28,6 +21,6 @@
 %ignore getGyroscope(float *, float *, float *);
 %ignore getMagnetometer(float *, float *, float *);
 
-%include "bmi160.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_bmi160)

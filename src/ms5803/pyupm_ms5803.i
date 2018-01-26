@@ -1,16 +1,9 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_ms5803
-%include "../upm.i"
-%include "cpointer.i"
-%include "std_string.i"
 
 %include "stdint.i"
-
+%include "cpointer.i"
 %pointer_functions(float, floatp);
 
-%include "ms5803_defs.h"
-%include "ms5803.hpp"
-%{
-    #include "ms5803.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

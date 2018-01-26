@@ -1,18 +1,14 @@
+/* Java-specific SWIG code */
 %module javaupm_mcp2515
-%include "../upm.i"
-%include "typemaps.i"
-%include "arrays_java.i"
-%include "../java_buffer.i"
-%include "std_string.i"
 
-%{
-    #include "mcp2515.hpp"
-    #include "mcp2515_regs.h"
-%}
-%include "mcp2515_regs.h"
-%include "mcp2515.hpp"
+%include "arrays_java.i"
+%include "typemaps.i"
+%include "../java_buffer.i"
 
 %ignore installISR(int pin, void *, void *);
 
-JAVA_ADD_INSTALLISR_PIN(upm::MCP2515)
+/* Include the common swig file for this library */
+%include "common.i"
+
 JAVA_JNI_LOADLIBRARY(javaupm_mcp2515)
+JAVA_ADD_INSTALLISR_PIN(upm::MCP2515)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovelinefinder
-%include "../upm.i"
 
-%{
-    #include "grovelinefinder.hpp"
-%}
-
-%include "grovelinefinder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovelinefinder)

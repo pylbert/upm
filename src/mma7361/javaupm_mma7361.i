@@ -1,7 +1,5 @@
 %module javaupm_mma7361
-%include "../upm.i"
-%include "std_string.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 %include "arrays_java.i";
 %include "../java_buffer.i"
@@ -36,9 +34,6 @@
 %ignore getAcceleration(float *, float *, float *);
 %ignore getVolts(float *, float *, float *);
 
-%include "mma7361.hpp"
-%{
-    #include "mma7361.hpp"
-%}
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mma7361)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_joystick12
-%include "../upm.i"
 
-%{
-    #include "joystick12.hpp"
-%}
-
-%include "joystick12.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_joystick12)

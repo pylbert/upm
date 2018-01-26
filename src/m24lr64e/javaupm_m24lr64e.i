@@ -1,6 +1,5 @@
 %module javaupm_m24lr64e
-%include "../upm.i"
-%include "stdint.i"
+
 %include "arrays_java.i";
 %include "../java_buffer.i"
 
@@ -19,10 +18,6 @@
     delete [] $1;
 }
 
-%{
-    #include "m24lr64e.hpp"
-%}
-
-%include "m24lr64e.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_m24lr64e)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_vcap
-%include "../upm.i"
-%include "std_string.i"
 
-%include "vcap.hpp"
-%{
-    #include "vcap.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_vcap)

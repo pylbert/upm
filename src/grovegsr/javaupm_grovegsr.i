@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovegsr
-%include "../upm.i"
 
-%{
-    #include "grovegsr.hpp"
-%}
-
-%include "grovegsr.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovegsr)

@@ -4,19 +4,6 @@
     %module(directors="1") javaupm_si1132
 #endif
 
-%include "../upm.i"
-
-%import "../interfaces/javaupm_iLightSensor.i"
-
-%typemap(javaimports) SWIGTYPE %{
-import upm_interfaces.*;
-%}
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_si1132)
-
-%include "si1132.hpp"
-%{
-    #include "si1132.hpp"
-%}
-
-

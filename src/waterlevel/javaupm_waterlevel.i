@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_waterlevel
-%include "../upm.i"
 
-%{
-    #include "waterlevel.hpp"
-%}
-
-%include "waterlevel.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_waterlevel)

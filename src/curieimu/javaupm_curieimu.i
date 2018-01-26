@@ -1,9 +1,4 @@
 %module javaupm_curieimu
-%include "../upm.i"
-
-%{
-    #include "curieimu.hpp"
-%}
 
 %typemap(jni) int16_t* "jshortArray"
 %typemap(jstype) int16_t* "short[]"
@@ -28,6 +23,6 @@
     JCALL4(SetShortArrayRegion, jenv, $result, 0, 6, (jshort*)$1);
 }
 
-%include "curieimu.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_curieimu)

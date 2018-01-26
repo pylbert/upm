@@ -1,5 +1,5 @@
 %module javaupm_bmm150
-%include "../upm.i"
+
 %include "typemaps.i"
 %include "../upm_javastdvector.i"
 
@@ -20,14 +20,9 @@ import java.lang.Float;
 
 %template(floatVector) std::vector<float>;
 
-%{
-    #include "bmm150.hpp"
-    #include "bmm150_defs.h"
-%}
-%include "bmm150_defs.h"
-%include "bmm150.hpp"
-
 %ignore installISR (BMM150_INTERRUPT_PINS_T , int ,  mraa::Edge ,  void *, void *);
+
+%include "common.i"
 
 %define INTERRUPT BMM150_INTERRUPT_PINS_T
 %enddef

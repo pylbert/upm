@@ -1,16 +1,11 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_bmm150
-%include "../upm.i"
-%include "cpointer.i"
-%include "../upm_vectortypes.i"
 
+%include "../upm_vectortypes.i"
+%include "cpointer.i"
 /* Send "int *" and "float *" to python as intp and floatp */
 %pointer_functions(int, intp);
 %pointer_functions(float, floatp);
 
-%include "bmm150_defs.h"
-%include "bmm150.hpp"
-%{
-    #include "bmm150.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

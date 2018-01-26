@@ -1,9 +1,4 @@
 %module javaupm_itg3200
-%include "../upm.i"
-
-%{
-    #include "itg3200.hpp"
-%}
 
 %typemap(jni) float* "jfloatArray"
 %typemap(jstype) float* "float[]"
@@ -32,6 +27,6 @@
     JCALL4(SetShortArrayRegion, jenv, $result, 0, 3, (jshort*)$1);
 }
 
-%include "itg3200.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_itg3200)

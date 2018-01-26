@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_am2315
-%include "../upm.i"
 
-%{
-    #include "am2315.hpp"
-%}
-
-%include "am2315.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_am2315)

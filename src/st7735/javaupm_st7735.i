@@ -1,5 +1,5 @@
 %module javaupm_st7735
-%include "../upm.i"
+
 %include "arrays_java.i"
 %include "typemaps.i"
 %include "stdint.i"
@@ -11,7 +11,6 @@
 %ignore Rcmd2green;
 %ignore Rcmd2red;
 %ignore Rcmd3;
-
 
 /*
 %typemap(jni) unsigned char[] "jbyteArray";
@@ -35,14 +34,6 @@
     $1 = (unsigned char *)JCALL2(GetByteArrayElements, jenv, $input, NULL);
 }
 
-%include "st7735_gfx.hpp"
-%{
-    #include "st7735_gfx.hpp"
-%}
-
-%include "st7735.hpp"
-%{
-    #include "st7735.hpp"
-%}
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_st7735)

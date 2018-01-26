@@ -1,5 +1,4 @@
 %module javaupm_e50hx
-%include "../upm.i"
 %include "typemaps.i"
 %include "../carrays_uint32_t.i"
 
@@ -13,13 +12,6 @@
 %include "enumtypeunsafe.swg"
 %javaconst(1);
 
-%include "bacnetmstp.hpp"
-%include "bacnetutil.hpp"
-%include "e50hx.hpp"
-%{
-    #include "bacnetutil.hpp"
-    #include "e50hx.hpp"
-%}
-
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_e50hx)

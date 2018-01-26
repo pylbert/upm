@@ -1,56 +1,10 @@
-%module (docstring="Basic Grove sensors") javaupm_grove
-
-%include "../upm.i"
+/* Java-specific SWIG code */
+%module javaupm_grove
 
 %apply int {mraa::Edge}
 
-%include "grove.hpp"
-%{
-    #include "grove.hpp"
-%}
-
-%include "grovebase.hpp"
-%{
-    #include "grovebase.hpp"
-%}
-
-%include "grovebutton.hpp"
-%{
-    #include "grovebutton.hpp"
-%}
-
-%include "groveled.hpp"
-%{
-    #include "groveled.hpp"
-%}
-
-%include "grovelight.hpp"
-%{
-    #include "grovelight.hpp"
-%}
-
-%include "groverelay.hpp"
-%{
-    #include "groverelay.hpp"
-%}
-
-%include "groverotary.hpp"
-%{
-    #include "groverotary.hpp"
-%}
-
-%include "groveslide.hpp"
-%{
-    #include "groveslide.hpp"
-%}
-
-%include "grovetemp.hpp"
-%{
-    #include "grovetemp.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_ADD_INSTALLISR_EDGE(upm::GroveButton)
-
-
-
 JAVA_JNI_LOADLIBRARY(javaupm_grove)

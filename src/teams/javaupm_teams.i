@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_teams
-%include "../upm.i"
-%include "std_string.i"
 
-%include "teams.hpp"
-%{
-    #include "teams.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_teams)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_groveo2
-%include "../upm.i"
 
-%{
-    #include "groveo2.hpp"
-%}
-
-%include "groveo2.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_groveo2)

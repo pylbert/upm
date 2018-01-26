@@ -1,11 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_buzzer
-%include "../upm.i"
 
-
-%include "buzzer_tones.h"
-%include "buzzer.hpp"
-%{
-    #include "buzzer.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_buzzer)

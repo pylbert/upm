@@ -1,11 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_pca9685
-%include "../upm.i"
-%include "cpointer.i"
 
-%{
-    #include "pca9685.hpp"
-%}
-
-%include "pca9685.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_pca9685)

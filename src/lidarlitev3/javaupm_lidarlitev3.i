@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_lidarlitev3
-%include "../upm.i"
 
-%{
-    #include "lidarlitev3.hpp"
-%}
-
-%include "lidarlitev3.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lidarlitev3)

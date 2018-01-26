@@ -1,12 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_dfrorp
-%include "../upm.i"
-%include "std_string.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 
-%include "dfrorp.hpp"
-%{
-    #include "dfrorp.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_dfrorp)

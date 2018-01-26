@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_relay
-%include "../upm.i"
 
-%{
-    #include "relay.hpp"
-%}
-
-%include "relay.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_relay)

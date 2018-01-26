@@ -1,11 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_lidarlitev3
-%include "../upm.i"
 
 %include "stdint.i"
 
-%include "lidarlitev3.hpp"
-%{
-    #include "lidarlitev3.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

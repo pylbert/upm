@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_scam
-%include "../upm.i"
+
 %include "../java_buffer.i"
 
-%{
-    #include "scam.hpp"
-%}
-
-%include "scam.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_scam)

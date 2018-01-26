@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_o2
-%include "../upm.i"
 
-%{
-    #include "o2.hpp"
-%}
-
-%include "o2.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_o2)

@@ -1,8 +1,7 @@
+/* Javascript-specific SWIG code */
 %module jsupm_hwxpxx
-%include "../upm.i"
+
 %include "stdint.i"
 
-%include "hwxpxx.hpp"
-%{
-    #include "hwxpxx.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

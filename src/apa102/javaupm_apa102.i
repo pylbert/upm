@@ -1,6 +1,5 @@
 %module javaupm_apa102
 
-%include "../upm.i"
 %include "typemaps.i"
 
 %typemap(jtype) (uint8_t *colors) "byte[]"
@@ -12,10 +11,6 @@
   $1 = (uint8_t*)JCALL2(GetByteArrayElements, jenv, $input, NULL);
 }
 
-%{
-    #include "apa102.hpp"
-%}
-
-%include "apa102.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_apa102)

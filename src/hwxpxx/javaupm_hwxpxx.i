@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_hwxpxx
-%include "../upm.i"
+
 %include "typemaps.i"
 
-%{
-    #include "hwxpxx.hpp"
-%}
-
-%include "hwxpxx.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hwxpxx)

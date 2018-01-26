@@ -1,11 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_ppd42ns
-%include "../upm.i"
 
-%include "ppd42ns_data.h"
-%include "ppd42ns.hpp"
-%{
-    #include "ppd42ns.hpp"
-%}
-
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ppd42ns)

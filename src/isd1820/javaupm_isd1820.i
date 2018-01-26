@@ -1,11 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_isd1820
-%include "../upm.i"
 
-%{
-    #include "isd1820.hpp"
-%}
-
-%include "isd1820.hpp"
-
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_isd1820)

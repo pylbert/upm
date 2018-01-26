@@ -1,11 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_abp
-%include "../upm.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%{
-    #include "abp.hpp"
-%}
-%include "abp.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_abp)

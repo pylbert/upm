@@ -1,12 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_rotaryencoder
-%include "../upm.i"
 
 %ignore signalAISR;
 
-%{
-    #include "rotaryencoder.hpp"
-%}
-
-%include "rotaryencoder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_rotaryencoder)

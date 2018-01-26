@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_apds9002
-%include "../upm.i"
 
-%{
-    #include "apds9002.hpp"
-%}
-
-%include "apds9002.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_apds9002)

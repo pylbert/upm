@@ -1,10 +1,7 @@
-%module (docstring="Temperature sensor") javaupm_temperature
+/* Java-specific SWIG code */
+%module javaupm_temperature
 
-%include "../upm.i"
-
-%include "temperature.hpp"
-%{
-    #include "temperature.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_temperature)

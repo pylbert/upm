@@ -1,6 +1,5 @@
 %module javaupm_bma220
-%include "../upm.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 %include "arrays_java.i";
 %include "../java_buffer.i"
@@ -23,17 +22,12 @@
 }
 
 %ignore getAccelerometer(float *, float *, float *);
+%ignore installISR(int, mraa::Edge, void *, void *);
 
-%{
-    #include "bma220.hpp"
-%}
-
-%include "bma220.hpp"
+%include "common.i"
 
 %define GETTER get_gpioIntr();
 %enddef
+
 JAVA_ADD_INSTALLISR_GPIO(upm::BMA220)
-
-%ignore installISR(int, mraa::Edge, void *, void *);
-
 JAVA_JNI_LOADLIBRARY(javaupm_bma220)

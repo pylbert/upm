@@ -1,19 +1,12 @@
+/* Java-specific SWIG code */
 %module javaupm_ssd1351
-%include "../upm.i"
-%include "typemaps.i"
+
 %include "stdint.i"
-
-%ignore m_map;
+%include "typemaps.i"
 %ignore font;
+%ignore m_map;
 
-%include "ssd1351_gfx.hpp"
-%{
-    #include "ssd1351_gfx.hpp"
-%}
-
-%include "ssd1351.hpp"
-%{
-    #include "ssd1351.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ssd1351)

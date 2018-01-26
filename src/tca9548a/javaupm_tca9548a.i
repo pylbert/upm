@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_tca9548a
-%include "../upm.i"
 
-%{
-    #include "tca9548a.hpp"
-%}
-
-%include "tca9548a.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_tca9548a)

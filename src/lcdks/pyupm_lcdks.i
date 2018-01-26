@@ -1,10 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_lcdks
-%include "../upm.i"
+
 %include "../upm_vectortypes.i"
 
-%include "lcdks.hpp"
-%{
-    #include "lcdks.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

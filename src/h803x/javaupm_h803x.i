@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_h803x
-%include "../upm.i"
+
 %include "typemaps.i"
 
-%{
-    #include "h803x.hpp"
-%}
-
-%include "h803x.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_h803x)

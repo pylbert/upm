@@ -1,17 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_lp8860
 
+%typemap(javaimports) SWIGTYPE %{import upm_interfaces.*;%}
 %import "../interfaces/javaupm_iLightController.i"
 
-%include "../upm.i"
-
-%typemap(javaimports) SWIGTYPE %{
-import upm_interfaces.*;
-%}
-
-%{
-    #include "lp8860.hpp"
-%}
-
-%include "lp8860.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lp8860)

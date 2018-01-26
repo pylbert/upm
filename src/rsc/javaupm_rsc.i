@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_rsc
-%include "../upm.i"
 
-%{
-    #include "rsc.hpp"
-%}
-
-%include "rsc.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_rsc)

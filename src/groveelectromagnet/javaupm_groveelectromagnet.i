@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_groveelectromagnet
-%include "../upm.i"
 
-%{
-    #include "groveelectromagnet.hpp"
-%}
-
-%include "groveelectromagnet.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_groveelectromagnet)

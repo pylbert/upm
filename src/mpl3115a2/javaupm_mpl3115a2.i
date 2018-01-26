@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_mpl3115a2
-%include "../upm.i"
 
-%{
-    #include "mpl3115a2.hpp"
-%}
-
-%include "mpl3115a2.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mpl3115a2)

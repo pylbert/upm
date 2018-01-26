@@ -1,15 +1,8 @@
 %module javaupm_button
-%include "../upm.i"
 
 %apply int {mraa::Edge}
 
-%{
-    #include "button.hpp"
-%}
-
-%include "button.hpp"
-
-#%ignore
+%include "common.i"
 
 JAVA_ADD_INSTALLISR_EDGE(upm::Button)
 

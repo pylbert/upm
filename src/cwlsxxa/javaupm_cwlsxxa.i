@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_cwlsxxa
-%include "../upm.i"
-%include "std_string.i"
 
-%include "cwlsxxa.hpp"
-%{
-    #include "cwlsxxa.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_cwlsxxa)

@@ -1,12 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_hka5
-%include "../upm.i"
-%include "std_string.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%include "hka5.hpp"
-%{
-    #include "hka5.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hka5)

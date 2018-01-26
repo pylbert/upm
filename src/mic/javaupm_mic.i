@@ -1,11 +1,7 @@
 %module javaupm_mic
-%include "../upm.i"
+
 %include "stdint.i"
 %include "arrays_java.i"
-
-%{
-    #include "mic.hpp"
-%}
 
 %typemap(jni) (uint16_t *buffer, int len) "jshortArray";
 %typemap(jtype) (uint16_t *buffer, int len) "short[]";
@@ -37,6 +33,6 @@
         JCALL3(ReleaseShortArrayElements, jenv, $input, (jshort *)$2, 0);
 }
 
-%include "mic.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mic)

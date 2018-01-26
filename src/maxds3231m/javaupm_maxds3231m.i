@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_maxds3231m
-%include "../upm.i"
 
-%{
-    #include "maxds3231m.hpp"
-%}
-
-%include "maxds3231m.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_maxds3231m)

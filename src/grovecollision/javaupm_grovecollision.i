@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovecollision
-%include "../upm.i"
 
-%{
-    #include "grovecollision.hpp"
-%}
-
-%include "grovecollision.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovecollision)

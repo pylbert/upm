@@ -1,12 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_ds1307
-%include "../upm.i"
+
 %include "arrays_java.i";
 %include "../java_buffer.i"
 
-%{
-    #include "ds1307.hpp"
-%}
-
-%include "ds1307.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ds1307)

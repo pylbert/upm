@@ -1,13 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_nlgpio16
-%include "../upm.i"
-%include "carrays.i"
-%include "std_string.i"
 
-%{
-    #include "nlgpio16.hpp"
-%}
-
-%include "nlgpio16.hpp"
-%array_class(char, charArray);
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_nlgpio16)

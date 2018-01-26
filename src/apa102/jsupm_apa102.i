@@ -1,6 +1,5 @@
 %module jsupm_apa102
- 
-%include "../upm.i"
+
 %inline %{
     #include <node_buffer.h>
 %}
@@ -12,8 +11,4 @@
   $1 = (uint8_t*) node::Buffer::Data($input);
 }
 
-%include "apa102.hpp" 
-
-%{
-    #include "apa102.hpp"
-%}
+%include "common.i"

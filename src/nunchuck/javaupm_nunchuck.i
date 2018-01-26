@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_nunchuck
-%include "../upm.i"
+
 %include "../java_buffer.i"
 
-%{
-    #include "nunchuck.hpp"
-%}
-
-%include "nunchuck.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_nunchuck)

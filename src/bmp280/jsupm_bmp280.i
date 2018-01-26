@@ -1,19 +1,10 @@
+/* Javascript-specific SWIG code */
 %module jsupm_bmp280
-%include "../upm.i"
-%include "cpointer.i"
 
-%include "iModuleStatus.hpp"
-%include "iHumiditySensor.hpp"
-%include "iPressureSensor.hpp"
 %include "iTemperatureSensor.hpp"
+%include "iModuleStatus.hpp"
+%include "iPressureSensor.hpp"
+%include "iHumiditySensor.hpp"
 
-%include "bmp280_regs.h"
-%include "bmp280.hpp"
-%{
-    #include "bmp280.hpp"
-%}
-
-%include "bme280.hpp"
-%{
-    #include "bme280.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

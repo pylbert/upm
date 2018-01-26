@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_hp20x
-%include "../upm.i"
 
-%{
-    #include "hp20x.hpp"
-%}
-
-%include "hp20x.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hp20x)

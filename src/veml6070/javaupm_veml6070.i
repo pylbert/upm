@@ -1,11 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_veml6070
-%include "../upm.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%{
-    #include "veml6070.hpp"
-%}
-%include "veml6070.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_veml6070)

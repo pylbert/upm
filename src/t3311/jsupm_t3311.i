@@ -1,11 +1,8 @@
+/* Javascript-specific SWIG code */
 %module jsupm_t3311
-%include "../upm.i"
-%include "stdint.i"
-%include "cpointer.i"
 
+%include "stdint.i"
 %pointer_functions(float, floatp);
 
-%include "t3311.hpp"
-%{
-    #include "t3311.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

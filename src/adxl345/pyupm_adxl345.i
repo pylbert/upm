@@ -1,7 +1,5 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
 %module pyupm_adxl345
-%include "../upm.i"
+
 %include "../carrays_int16_t.i"
 %include "../carrays_float.i"
 
@@ -13,7 +11,4 @@
     $result = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_floatArray, 0 | 0 );
 }
 
-%include "adxl345.hpp"
-%{
-    #include "adxl345.hpp"
-%}
+%include "common.i"

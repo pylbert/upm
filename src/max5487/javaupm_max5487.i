@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_max5487
-%include "../upm.i"
 
-%{
-    #include "max5487.hpp"
-%}
-
-%include "max5487.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_max5487)

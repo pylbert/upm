@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_light
-%include "../upm.i"
 
-%{
-    #include "light.hpp"
-%}
-
-%include "light.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_light)

@@ -1,14 +1,9 @@
 %module javaupm_adxl335
-%include "../upm.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 
 %apply int *OUTPUT { int *xVal, int *yVal, int *zVal };
 %apply float *OUTPUT { float *xAccel, float *yAccel, float *zAccel  };
-
-%{
-    #include "adxl335.hpp"
-%}
 
 %typemap(jni) float* "jfloatArray"
 %typemap(jstype) float* "float[]"
@@ -40,6 +35,6 @@
 %ignore values(int *, int *, int *);
 %ignore acceleration(float *, float *, float *);
 
-%include "adxl335.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_adxl335)

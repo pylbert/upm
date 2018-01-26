@@ -1,13 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_uartat
-%include "../upm.i"
-%include "std_string.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%include "uartat_defs.h"
-%include "uartat.hpp"
-%{
-    #include "uartat.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_uartat)

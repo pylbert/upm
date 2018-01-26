@@ -1,13 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovegprs
-%include "../upm.i"
-%include "carrays.i"
-%include "std_string.i"
 
-%{
-    #include "grovegprs.hpp"
-%}
-
-%include "grovegprs.hpp"
-%array_class(char, charArray);
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovegprs)

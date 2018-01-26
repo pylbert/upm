@@ -1,12 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_ehr
-%include "../upm.i"
 
 %ignore beatISR;
 
-%{
-    #include "ehr.hpp"
-%}
-
-%include "ehr.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ehr)

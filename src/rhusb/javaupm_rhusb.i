@@ -1,14 +1,12 @@
+/* Java-specific SWIG code */
 %module javaupm_rhusb
-%include "../upm.i"
-%include "typemaps.i"
-%include "cpointer.i"
+
 %include "arrays_java.i";
+%include "typemaps.i"
 %include "../java_buffer.i"
+%include "cpointer.i"
 
-%{
-    #include "rhusb.hpp"
-%}
-
-%include "rhusb.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_rhusb)

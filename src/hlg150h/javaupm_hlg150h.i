@@ -1,21 +1,14 @@
+/* Java-specific SWIG code */
 %module javaupm_hlg150h
 
-%include "../upm.i"
 %include "arrays_java.i";
+%include "typemaps.i"
 %include "../java_buffer.i"
 %include "cpointer.i"
-%include "typemaps.i"
-
+%typemap(javaimports) SWIGTYPE %{import upm_interfaces.*;%}
 %import "../interfaces/javaupm_iLightController.i"
 
-%typemap(javaimports) SWIGTYPE %{
-import upm_interfaces.*;
-%}
-
-%{
-    #include "hlg150h.hpp"
-%}
-
-%include "hlg150h.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hlg150h)

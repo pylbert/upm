@@ -1,19 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_my9221
-%include "../upm.i"
 
-%include "my9221.hpp"
-%{
-    #include "my9221.hpp"
-%}
-
-%include "groveledbar.hpp"
-%{
-    #include "groveledbar.hpp"
-%}
-
-%include "grovecircularled.hpp"
-%{
-    #include "grovecircularled.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_my9221)

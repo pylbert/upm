@@ -228,7 +228,23 @@ function (_get_target_dependency_interface_include_dirs target varIncludeDirs)
   set(${varIncludeDirs} "${${varIncludeDirs}}" PARENT_SCOPE)
 endfunction (_get_target_dependency_interface_include_dirs target varIncludeDirs)
 
+# This function decides which swig interface file to use for the
+# CMAKE_CURRENT_SOURCE_DIR.
+#
+#   if ${filePrefix}_${libname}.i exists, return its full path
+#   elif common.i exists, return its full path
+#
+function (_get_current_dot_i_file filePrefix varDotIFile)
+  set(${varDotIFile} "${CMAKE_CURRENT_SOURCE_DIR}/common.i")
+  if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${filePrefix}_${libname}.i")
+      set(${varDotIFile} "${CMAKE_CURRENT_SOURCE_DIR}/${filePrefix}_${libname}.i")
+  endif()
+  set(${varDotIFile} "${${varDotIFile}}" PARENT_SCOPE)
+endfunction()
+
 # Create a single swig target for python
+# This is a macro since the function which calls it (upm_swig_python) depends
+# on values set inside this macro
 macro(_upm_swig_python)
   # Transitive headers don't appear to get picked up by swig_add_module call for
   # wrapper generation.  Get them manually and add them here.
@@ -238,8 +254,17 @@ macro(_upm_swig_python)
                        ${CMAKE_CURRENT_BINARY_DIR}/..
                        ${DEPEND_DIRS})
 
-  set_source_files_properties (pyupm_${libname}.i PROPERTIES CPLUSPLUS ON)
-  set_source_files_properties (pyupm_${libname}.i PROPERTIES SWIG_FLAGS "-I${CMAKE_CURRENT_BINARY_DIR}/..")
+  # Decide between common.i or a language-specific .i
+  _get_current_dot_i_file(pyupm SWIG_CURRENT_DOT_I_FILE)
+  # If this module is using common.i, provide a module name for UseSWIG AND SWIG_FLAGS
+  if (${SWIG_CURRENT_DOT_I_FILE} MATCHES common.i)
+    set_source_files_properties(${SWIG_CURRENT_DOT_I_FILE} PROPERTIES
+        SWIG_MODULE_NAME pyupm_${libname}
+        SWIG_FLAGS ";-module;pyupm_${libname};")
+  endif()
+
+  # Tell UseSWIG that this is CXX
+  set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} PROPERTY CPLUSPLUS ON)
 
   # Set current python binary dir
   set (CMAKE_CURRENT_PYTHON_BINARY_DIR
@@ -255,9 +280,9 @@ macro(_upm_swig_python)
   # Swig module name (example: pyupm_a110x-python2)
   set (python_wrapper_name pyupm_${libname}-python${PYTHON_VERSION_MAJOR})
   if (CMAKE_VERSION VERSION_LESS "3.8")
-    swig_add_module (${python_wrapper_name} python pyupm_${libname}.i)
+      swig_add_module (${python_wrapper_name} python ${SWIG_CURRENT_DOT_I_FILE})
   else ()
-    swig_add_library (${python_wrapper_name} LANGUAGE python SOURCES pyupm_${libname}.i)
+      swig_add_library (${python_wrapper_name} LANGUAGE python SOURCES ${SWIG_CURRENT_DOT_I_FILE})
   endif ()
   # Get target library name (example _pyupm_a110x-python2)
   set (python_wrapper_target ${SWIG_MODULE_${python_wrapper_name}_REAL_NAME})
@@ -365,12 +390,25 @@ function(upm_swig_node)
                          ${CMAKE_CURRENT_BINARY_DIR}/..
                          ${DEPEND_DIRS})
 
-    set_property (SOURCE jsupm_${libname}.i PROPERTY SWIG_FLAGS "-node" "-DV8_VERSION=${V8_VERSION_HEX}")
-    set_source_files_properties (jsupm_${libname}.i PROPERTIES CPLUSPLUS ON)
+    # Decide between common.i or a language-specific .i
+    _get_current_dot_i_file(jsupm SWIG_CURRENT_DOT_I_FILE)
+    # If this module is using common.i, provide a module name for UseSWIG AND SWIG_FLAGS
+    if (${SWIG_CURRENT_DOT_I_FILE} MATCHES common.i)
+      set_source_files_properties(${SWIG_CURRENT_DOT_I_FILE} PROPERTIES
+          SWIG_MODULE_NAME jsupm_${libname}
+          SWIG_FLAGS ";-module;jsupm_${libname};")
+    endif()
+
+    # Tell UseSWIG that this is CXX
+    set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} PROPERTY CPLUSPLUS ON)
+    # Append additional flags for NodeJS
+    set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} APPEND PROPERTY
+      SWIG_FLAGS ";-node;-DV8_VERSION=${V8_VERSION_HEX}")
+
     if (CMAKE_VERSION VERSION_LESS "3.8")
-      swig_add_module (jsupm_${libname} javascript jsupm_${libname}.i)
+      swig_add_module (jsupm_${libname} javascript ${SWIG_CURRENT_DOT_I_FILE})
     else ()
-      swig_add_library (jsupm_${libname} LANGUAGE javascript SOURCES jsupm_${libname}.i)
+      swig_add_library (jsupm_${libname} LANGUAGE javascript SOURCES ${SWIG_CURRENT_DOT_I_FILE})
     endif ()
     add_dependencies(jsupm_${libname} ${libname})
     swig_link_libraries (jsupm_${libname} ${NODE_LIBRARIES} ${libname})
@@ -435,12 +473,27 @@ function(upm_swig_java)
       ${DEPEND_DIRS}
     )
 
-    set_source_files_properties (javaupm_${libname}.i PROPERTIES CPLUSPLUS ON)
-    set_source_files_properties (javaupm_${libname}.i PROPERTIES SWIG_FLAGS ";-package;upm_${libname};-I${CMAKE_BINARY_DIR}/src")
+    # Decide between common.i or a language-specific .i
+    _get_current_dot_i_file(javaupm SWIG_CURRENT_DOT_I_FILE)
+    # If this module is using common.i, provide a module name for UseSWIG AND SWIG_FLAGS
+    if (${SWIG_CURRENT_DOT_I_FILE} MATCHES common.i)
+      set_source_files_properties(${SWIG_CURRENT_DOT_I_FILE} PROPERTIES
+          SWIG_MODULE_NAME javaupm_${libname}
+          SWIG_FLAGS ";-module;javaupm_${libname};")
+    endif()
+
+    # Tell UseSWIG that this is CXX
+    set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} PROPERTY CPLUSPLUS ON)
+
+    # Set a -package as well (which is slightly different than the module name,
+    # module: javaupm_a110x vs package: upm_a110x
+    set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} APPEND PROPERTY
+      SWIG_FLAGS ";-package;upm_${libname}")
+
     if (CMAKE_VERSION VERSION_LESS "3.8")
-      swig_add_module (javaupm_${libname} java javaupm_${libname}.i)
+      swig_add_module (javaupm_${libname} java ${SWIG_CURRENT_DOT_I_FILE})
     else ()
-      swig_add_library (javaupm_${libname} LANGUAGE java SOURCES javaupm_${libname}.i)
+      swig_add_library (javaupm_${libname} LANGUAGE java SOURCES ${SWIG_CURRENT_DOT_I_FILE})
     endif ()
 
     # If the C++ target depends on C++ interfaces, make the JAVA target

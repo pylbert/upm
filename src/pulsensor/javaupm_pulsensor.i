@@ -3,8 +3,6 @@
 #else
     %module(directors="1") javaupm_pulsensor
 #endif
-
-%include "../upm.i"
 %include "arrays_java.i"
 
 #ifndef ANDROID
@@ -15,13 +13,8 @@
 %ignore sample_thread;
 %ignore pin_ctx;
 %ignore do_sample;
-%ignore callback; 
+%ignore callback;
 
-%include "Callback.hpp"
-%{
-    #include "pulsensor.hpp"
-%}
-
-%include "pulsensor.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_pulsensor)

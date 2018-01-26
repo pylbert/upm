@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_tmp006
-%include "../upm.i"
 
-%{
-    #include "tmp006.hpp"
-%}
-
-%include "tmp006.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_tmp006)

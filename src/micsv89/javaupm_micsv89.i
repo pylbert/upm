@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_micsv89
-%include "../upm.i"
 
-%{
-    #include "micsv89.hpp"
-%}
-
-%include "micsv89.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_micsv89)

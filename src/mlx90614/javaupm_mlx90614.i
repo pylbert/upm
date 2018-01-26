@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_mlx90614
-%include "../upm.i"
 
-%{
-    #include "mlx90614.hpp"
-%}
-
-%include "mlx90614.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mlx90614)

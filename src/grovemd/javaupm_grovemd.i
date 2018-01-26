@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_grovemd
-%include "../upm.i"
 
-%{
-    #include "grovemd.hpp"
-%}
-
-%include "grovemd.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovemd)

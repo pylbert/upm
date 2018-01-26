@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_rgbringcoder
-%include "../upm.i"
 
-%{
-    #include "rgbringcoder.hpp"
-%}
-
-%include "rgbringcoder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_rgbringcoder)

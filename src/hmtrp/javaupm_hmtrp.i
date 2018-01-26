@@ -1,5 +1,5 @@
 %module javaupm_hmtrp
-%include "../upm.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 %include "../java_buffer.i"
@@ -11,18 +11,12 @@
 %apply uint32_t *OUTPUT { uint32_t *uartBaud };
 %apply uint8_t *OUTPUT { uint8_t *strength };
 
-%{
-    #include "hmtrp.hpp"
-    speed_t int_B9600 = B9600;
-%}
-
 %ignore getRFSignalStrength(uint8_t *strength);
 READDATA_EXCEPTION(getRFSignalStrength())
 
 %ignore getModSignalStrength(uint8_t *strength);
 READDATA_EXCEPTION(getModSignalStrength())
 
-%include "hmtrp.hpp"
-speed_t int_B9600 = B9600;
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hmtrp)

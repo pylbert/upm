@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_tex00
-%include "../upm.i"
-%include "std_string.i"
 
-%include "tex00.hpp"
-%{
-    #include "tex00.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_tex00)

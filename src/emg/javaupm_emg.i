@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_emg
-%include "../upm.i"
 
-%{
-    #include "emg.hpp"
-%}
-
-%include "emg.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_emg)

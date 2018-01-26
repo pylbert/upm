@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_biss0001
-%include "../upm.i"
 
-%{
-    #include "biss0001.hpp"
-%}
-
-%include "biss0001.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_biss0001)

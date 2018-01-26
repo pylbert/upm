@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_ad8232
-%include "../upm.i"
 
-%{
-    #include "ad8232.hpp"
-%}
-
-%include "ad8232.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ad8232)

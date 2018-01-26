@@ -1,11 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_max44000
-%include "../upm.i"
 
 %include "stdint.i"
 
-%include "max44000.hpp"
-%{
-    #include "max44000.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

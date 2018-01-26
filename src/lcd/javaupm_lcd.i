@@ -1,5 +1,5 @@
 %module javaupm_lcd
-%include "../upm.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 %include "arrays_java.i";
@@ -22,20 +22,6 @@
         JCALL3(ReleaseByteArrayElements, jenv, $input, (jbyte *)$1, 0);
 }
 
-%{
-    #include "lcd.hpp"
-    #include "ssd.hpp"
-    #include "ssd1327.hpp"
-    #include "ssd1308.hpp"
-    #include "ssd1306.hpp"
-    #include "eboled.hpp"
-%}
-
-%include "lcd.hpp"
-%include "ssd.hpp"
-%include "ssd1327.hpp"
-%include "ssd1308.hpp"
-%include "ssd1306.hpp"
-%include "eboled.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_i2clcd)

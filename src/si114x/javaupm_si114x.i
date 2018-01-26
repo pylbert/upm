@@ -1,11 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_si114x
-%include "../upm.i"
+
 %include "cpointer.i"
 
-%{
-    #include "si114x.hpp"
-%}
-
-%include "si114x.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_si114x)

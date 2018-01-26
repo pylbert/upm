@@ -1,12 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_hcsr04
-%include "../upm.i"
 
-%{
-    #include "hcsr04.hpp"
-%}
-
-%include "hcsr04.h"
-%include "hcsr04.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hcsr04)
-

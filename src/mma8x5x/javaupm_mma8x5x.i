@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_mma8x5x
-%include "../upm.i"
 
-%{
-    #include "mma8x5x.hpp"
-%}
-
-%include "mma8x5x.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mma8x5x)

@@ -1,19 +1,6 @@
 %module javaupm_gas
-%include "../upm.i"
-%include "typemaps.i"
 
-%{
-    #include "gas.hpp"
-    #include "mq2.hpp"
-    #include "mq3.hpp"
-    #include "mq4.hpp"
-    #include "mq5.hpp"
-    #include "mq6.hpp"
-    #include "mq7.hpp"
-    #include "mq8.hpp"
-    #include "mq9.hpp"
-    #include "tp401.hpp"
-%}
+%include "typemaps.i"
 
 %typemap(jni) (uint16_t *buffer, int len) "jshortArray";
 %typemap(jtype) (uint16_t *buffer, int len) "short[]";
@@ -45,15 +32,6 @@
         JCALL3(ReleaseShortArrayElements, jenv, $input, (jshort *)$2, 0);
 }
 
-%include "gas.hpp"
-%include "mq2.hpp"
-%include "mq3.hpp"
-%include "mq4.hpp"
-%include "mq5.hpp"
-%include "mq6.hpp"
-%include "mq7.hpp"
-%include "mq8.hpp"
-%include "mq9.hpp"
-%include "tp401.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_gas)

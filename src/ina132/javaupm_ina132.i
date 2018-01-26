@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_ina132
-%include "../upm.i"
 
-%{
-    #include "ina132.hpp"
-%}
-
-%include "ina132.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ina132)

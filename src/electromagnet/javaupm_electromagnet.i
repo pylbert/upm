@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_electromagnet
-%include "../upm.i"
 
-%{
-    #include "electromagnet.hpp"
-%}
-
-%include "electromagnet.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_electromagnet)

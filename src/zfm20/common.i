@@ -1,4 +1,4 @@
-%include "../upm.i"
+%include "../common_top.i"
 
 /* Make it easy to use the methods which take a uint& id and score */
 %include "typemaps.i"

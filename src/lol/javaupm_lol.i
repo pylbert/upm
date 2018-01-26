@@ -1,6 +1,5 @@
 %module javaupm_lol
-%include "../upm.i"
-%include "stdint.i"
+
 %include "arrays_java.i";
 %include "typemaps.i"
 
@@ -18,10 +17,6 @@
     delete [] $1;
 }
 
-%{
-    #include "lol.hpp"
-%}
-
-%include "lol.hpp"
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lol)

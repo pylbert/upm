@@ -1,12 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_groveultrasonic
-%include "../upm.i"
 
 %ignore signalISR;
 
-%{
-    #include "groveultrasonic.hpp"
-%}
-
-%include "groveultrasonic.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_groveultrasonic)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_mg811
-%include "../upm.i"
 
-%{
-    #include "mg811.hpp"
-%}
-
-%include "mg811.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mg811)

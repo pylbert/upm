@@ -1,13 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_ecezo
-%include "../upm.i"
-%include "std_string.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%include "ecezo_defs.h"
-%include "ecezo.hpp"
-%{
-    #include "ecezo.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ecezo)

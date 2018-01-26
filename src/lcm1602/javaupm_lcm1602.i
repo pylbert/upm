@@ -1,14 +1,12 @@
+/* Java-specific SWIG code */
 %module javaupm_lcm1602
-%include "../upm.i"
+
+%include "stdint.i"
 %include "typemaps.i"
 %include "std_vector.i"
-%include "stdint.i"
-
 %template(byteVector) std::vector<uint8_t>;
 
-%include "lcm1602.hpp"
-%{
-    #include "lcm1602.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lcm1602)

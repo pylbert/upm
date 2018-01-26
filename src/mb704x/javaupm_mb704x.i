@@ -1,12 +1,10 @@
+/* Java-specific SWIG code */
 %module javaupm_mb704x
-%include "../upm.i"
-%include "std_string.i"
+
 %include "stdint.i"
 %include "typemaps.i"
 
-%include "mb704x.hpp"
-%{
-    #include "mb704x.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_mb704x)

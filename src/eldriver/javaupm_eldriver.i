@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_eldriver
-%include "../upm.i"
 
-%{
-    #include "eldriver.hpp"
-%}
-
-%include "eldriver.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_eldriver)

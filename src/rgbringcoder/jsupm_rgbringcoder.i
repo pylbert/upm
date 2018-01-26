@@ -1,9 +1,7 @@
+/* Javascript-specific SWIG code */
 %module jsupm_rgbringcoder
-%include "../upm.i"
+
 %include "stdint.i"
 
-%{
-    #include "rgbringcoder.hpp"
-%}
-
-%include "rgbringcoder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"

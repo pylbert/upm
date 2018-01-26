@@ -1,9 +1,4 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
-
 %module pyupm_apa102
-
-%include "../upm.i"
 
 // setLeds
 %typemap(in) (uint8_t *colors) {
@@ -15,9 +10,4 @@
   }
 }
 
-%include "apa102.hpp"
-
-%{
-
-    #include "apa102.hpp"
-%}
+%include "common.i"

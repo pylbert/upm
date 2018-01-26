@@ -1,8 +1,7 @@
+/* Javascript-specific SWIG code */
 %module jsupm_lcdks
-%include "../upm.i"
+
 %include "../upm_vectortypes.i"
 
-%include "lcdks.hpp"
-%{
-    #include "lcdks.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

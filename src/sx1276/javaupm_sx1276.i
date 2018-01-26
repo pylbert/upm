@@ -1,17 +1,14 @@
+/* Java-specific SWIG code */
 %module javaupm_sx1276
-%include "../upm.i"
-%include "cpointer.i"
-%include "typemaps.i"
+
 %include "arrays_java.i";
+%include "typemaps.i"
 %include "../java_buffer.i"
 
-%{
-    #include "sx1276.hpp"
-%}
-
-%ignore send(uint8_t *buffer, uint8_t size, int txTimeout);
 %ignore getRxBuffer();
+%ignore send(uint8_t *buffer, uint8_t size, int txTimeout);
 
-%include "sx1276.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_sx1276)

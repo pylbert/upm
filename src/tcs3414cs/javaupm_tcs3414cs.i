@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_tcs3414cs
-%include "../upm.i"
 
-%{
-    #include "tcs3414cs.hpp"
-%}
-
-%include "tcs3414cs.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_tcs3414cs)

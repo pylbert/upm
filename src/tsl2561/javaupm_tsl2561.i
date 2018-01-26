@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_tsl2561
-%include "../upm.i"
 
-%{
-    #include "tsl2561.hpp"
-%}
-
-%include "tsl2561.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_tsl2561)

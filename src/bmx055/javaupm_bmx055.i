@@ -1,6 +1,5 @@
 %module javaupm_bmx055
-%include "../upm.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 %include "../upm_javastdvector.i"
 
@@ -25,23 +24,6 @@ import java.lang.Float;
 
 %template(floatVector) std::vector<float>;
 
-%include "bmg160_defs.h"
-%include "bma250e_defs.h"
-%include "bmm150_defs.h"
-
-%include "bmx055.hpp"
-%{
-    #include "bmx055.hpp"
-%}
-
-%include "bmc150.hpp"
-%{
-    #include "bmc150.hpp"
-%}
-
-%include "bmi055.hpp"
-%{
-    #include "bmi055.hpp"
-%}
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_bmx055)

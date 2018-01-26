@@ -1,4 +1,4 @@
-%include "../upm.i"
+%include "../common_top.i"
 
 %{
 #include "a110x.hpp"

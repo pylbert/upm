@@ -1,19 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_servo
-%include "../upm.i"
 
-%include "servo.hpp"
-%{
-    #include "servo.hpp"
-%}
-
-%include "es08a.hpp"
-%{
-    #include "es08a.hpp"
-%}
-
-%include "es9257.hpp"
-%{
-    #include "es9257.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_servo)

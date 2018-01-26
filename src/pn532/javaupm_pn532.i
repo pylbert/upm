@@ -1,18 +1,14 @@
+/* Java-specific SWIG code */
 %module javaupm_pn532
-%include "../upm.i"
-%include "typemaps.i"
+
 %include "arrays_java.i"
-
-%apply signed char[] {uint8_t *};
-%apply unsigned char *INOUT {uint8_t *responseLength};
-%apply unsigned char *OUTPUT {uint8_t *uidLength};
-
+%include "typemaps.i"
 %ignore i2cContext;
+%apply signed char[] {uint8_t *};
+%apply unsigned char *OUTPUT {uint8_t *uidLength};
+%apply unsigned char *INOUT {uint8_t *responseLength};
 
-%{
-    #include "pn532.hpp"
-%}
-
-%include "pn532.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_pn532)

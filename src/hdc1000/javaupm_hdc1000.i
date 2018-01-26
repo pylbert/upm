@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_hdc1000
-%include "../upm.i"
 
-%{
-    #include "hdc1000.hpp"
-%}
-
-%include "hdc1000.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_hdc1000)

@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_wheelencoder
-%include "../upm.i"
 
-%{
-    #include "wheelencoder.hpp"
-%}
-
-%include "wheelencoder.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_wheelencoder)

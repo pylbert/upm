@@ -1,12 +1,8 @@
+/* Javascript-specific SWIG code */
 %module jsupm_ms5803
-%include "../upm.i"
-%include "cpointer.i"
-%include "std_string.i"
 
+%include "cpointer.i"
 %pointer_functions(float, floatp);
 
-%include "ms5803_defs.h"
-%include "ms5803.hpp"
-%{
-    #include "ms5803.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

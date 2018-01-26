@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_adxrs610
-%include "../upm.i"
 
-%{
-    #include "adxrs610.hpp"
-%}
-
-%include "adxrs610.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_adxrs610)

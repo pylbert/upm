@@ -1,12 +1,9 @@
+/* Java-specific SWIG code */
 %module javaupm_grovewfs
-%include "../upm.i"
 
 %ignore flowISR;
 
-%{
-    #include "grovewfs.hpp"
-%}
-
-%include "grovewfs.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_grovewfs)

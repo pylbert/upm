@@ -1,10 +1,10 @@
 %module javaupm_lsm303agr
-%include "../upm.i"
 %include "typemaps.i"
 %include "../upm_javastdvector.i"
 
 %ignore getMagnetometer(float *, float *, float *);
 %ignore getAccelerometer(float *, float *, float *);
+%ignore installISR(LSM303AGR_INTERRUPT_PINS_T , int ,  mraa::Edge , void *, void *);
 
 %typemap(javaimports) SWIGTYPE %{
 import java.util.AbstractList;
@@ -21,18 +21,10 @@ import java.lang.Float;
 
 %template(floatVector) std::vector<float>;
 
-%{
-    #include "lsm303agr.hpp"
-    #include "lsm303agr_defs.h"
-%}
-%include "lsm303agr_defs.h"
-%include "lsm303agr.hpp"
-
-
-%ignore installISR(LSM303AGR_INTERRUPT_PINS_T , int ,  mraa::Edge , void *, void *);
+%include "common.i"
 
 %define INTERRUPT LSM303AGR_INTERRUPT_PINS_T
 %enddef
-JAVA_ADD_INSTALLISR_INTERRUPT(upm::LSM303AGR)
 
+JAVA_ADD_INSTALLISR_INTERRUPT(upm::LSM303AGR)
 JAVA_JNI_LOADLIBRARY(javaupm_lsm303agr)

@@ -1,11 +1,7 @@
-// Include doxygen-generated documentation
-%include "pyupm_doxy2swig.i"
+/* Python-specific SWIG code */
 %module pyupm_stepmotor
-%include "../upm.i"
 
 %include "stdint.i"
 
-%include "stepmotor.hpp"
-%{
-    #include "stepmotor.hpp"
-%}
+/* Include the common swig file for this library */
+%include "common.i"

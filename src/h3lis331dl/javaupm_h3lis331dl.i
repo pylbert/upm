@@ -1,20 +1,18 @@
+/* Java-specific SWIG code */
 %module javaupm_h3lis331dl
-%include "../upm.i"
-%include "cpointer.i"
+
 %include "typemaps.i"
 %include "std_vector.i"
+
+%apply float *OUTPUT { float *aX, float *aY, float *aZ  };
+%apply int *OUTPUT { int *x, int *y, int*z };
+
+%ignore i2cContext;
 
 %template(IntVector) std::vector<int>;
 %template(FloatVector) std::vector<float>;
 
-%apply int *OUTPUT { int *x, int *y, int*z };
-%apply float *OUTPUT { float *aX, float *aY, float *aZ  };
-
-%ignore i2cContext;
-
-%{
-#include "h3lis331dl.hpp"
-%}
-%include "h3lis331dl.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_h3lis331dl)

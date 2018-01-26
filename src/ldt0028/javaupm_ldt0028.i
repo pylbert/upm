@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_ldt0028
-%include "../upm.i"
 
-%{
-    #include "ldt0028.hpp"
-%}
-
-%include "ldt0028.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_ldt0028)

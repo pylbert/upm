@@ -1,10 +1,7 @@
+/* Java-specific SWIG code */
 %module javaupm_at42qt1070
-%include "../upm.i"
 
-%{
-    #include "at42qt1070.hpp"
-%}
-
-%include "at42qt1070.hpp"
+/* Include the common swig file for this library */
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_at42qt1070)

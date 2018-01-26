@@ -1,5 +1,4 @@
 %module javaupm_lsm303d
-%include "../upm.i"
 %include "typemaps.i"
 %include "../upm_javastdvector.i"
 
@@ -21,10 +20,6 @@ import java.lang.Float;
 
 %template(floatVector) std::vector<float>;
 
-%include "lsm303d_defs.h"
-%include "lsm303d.hpp"
-%{
-    #include "lsm303d.hpp"
-%}
+%include "common.i"
 
 JAVA_JNI_LOADLIBRARY(javaupm_lsm303d)
