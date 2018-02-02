@@ -191,6 +191,7 @@ endfunction (_gen_pom_per_target)
 function (_print_target_summary)
   list(LENGTH UPM_TARGETS_C N_C)
   list(LENGTH UPM_TARGETS_CXX N_CXX)
+  list(LENGTH UPM_TARGETS_GO N_GO)
   list(LENGTH UPM_TARGETS_JAVA N_JAVA)
   list(LENGTH UPM_TARGETS_NODEJS N_NODEJS)
   list(LENGTH UPM_TARGETS_PYTHON2 N_PYTHON2)
@@ -199,6 +200,7 @@ function (_print_target_summary)
   message(STATUS "UPM target summary:")
   message(STATUS "\tFound C       libraries: ${N_C}")
   message(STATUS "\tFound CXX     libraries: ${N_CXX}")
+  message(STATUS "\tFound GO      libraries: ${N_GO}")
   message(STATUS "\tFound JAVA    libraries: ${N_JAVA}")
   message(STATUS "\tFound NODEJS  libraries: ${N_NODEJS}")
   message(STATUS "\tFound PYTHON2 libraries: ${N_PYTHON2}")
@@ -563,6 +565,78 @@ function(upm_swig_java)
   endif (NOT ";${JAVASWIG_BLACKLIST};" MATCHES ";${libname};")
 endfunction(upm_swig_java)
 
+# Create a single swig target for Go
+function(upm_swig_go)
+  # Transitive headers don't appear to get picked up by swig_add_module call for
+  # wrapper generation.  Get them manually and add them here.
+  _get_target_dependency_interface_include_dirs(${libname} DEPEND_DIRS)
+
+  include_directories (${CMAKE_CURRENT_SOURCE_DIR}/..
+                       ${CMAKE_CURRENT_BINARY_DIR}/..
+                       ${DEPEND_DIRS})
+
+  # Decide between common.i or a language-specific .i
+  _get_current_dot_i_file(goupm SWIG_CURRENT_DOT_I_FILE)
+  # If this module is using common.i, provide a module name for UseSWIG AND SWIG_FLAGS
+  if (${SWIG_CURRENT_DOT_I_FILE} MATCHES common.i)
+    set_source_files_properties(${SWIG_CURRENT_DOT_I_FILE} PROPERTIES
+        SWIG_MODULE_NAME goupm_${libname}
+        SWIG_FLAGS ";-module;goupm_${libname};-cgo;")
+  endif()
+
+  # For now, if no common.i file exists, return
+  if(NOT EXISTS ${SWIG_CURRENT_DOT_I_FILE})
+    return()
+  endif()
+
+  # Tell UseSWIG that this is CXX
+  set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} PROPERTY CPLUSPLUS ON)
+  # Append additional flags for Golang
+  set_property(SOURCE ${SWIG_CURRENT_DOT_I_FILE} APPEND PROPERTY
+      SWIG_FLAGS ";-intgosize;64")
+
+  if (CMAKE_VERSION VERSION_LESS "3.8")
+    swig_add_module (goupm_${libname} go ${SWIG_CURRENT_DOT_I_FILE})
+  else ()
+    swig_add_library (goupm_${libname} LANGUAGE go SOURCES ${SWIG_CURRENT_DOT_I_FILE})
+  endif ()
+
+  set (go_target ${SWIG_MODULE_goupm_${libname}_REAL_NAME})
+  add_dependencies(goupm_${libname} ${libname})
+
+  swig_link_libraries (goupm_${libname} ${libname})
+  target_include_directories (goupm_${libname}
+      PUBLIC
+      ${DEPEND_DIRS})
+
+  # Turn off flags for wrapper
+  foreach(flag ${SWIG_CXX_DISABLE_WARNINGS})
+    compiler_flag_supported(CXX is_supported ${flag})
+    if (is_supported)
+      target_compile_options(goupm_${libname}
+        PRIVATE "${flag}")
+    endif(is_supported)
+  endforeach(flag ${SWIG_CXX_DISABLE_WARNINGS})
+
+  #  # Python collateral names will be the same for python2/3 w/different library dirs
+  #  set_target_properties (${python_wrapper_target} PROPERTIES
+  #      OUTPUT_NAME _pyupm_${libname}
+  #      LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_PYTHON_BINARY_DIR})
+  #
+  #  # Install .py's to python packages directory/upm
+  #  install (FILES ${swig_extra_generated_files}
+  #      DESTINATION ${PYTHON_PACKAGES_PATH}/upm
+  #      COMPONENT ${CMAKE_PROJECT_NAME}-python${PYTHON_VERSION_MAJOR})
+  #
+  #  # Install python wrapper module library
+  #  install (TARGETS ${python_wrapper_target}
+  #      DESTINATION ${PYTHON_PACKAGES_PATH}/upm
+  #      COMPONENT ${CMAKE_PROJECT_NAME}-python${PYTHON_VERSION_MAJOR})
+
+  # Keep track of all Go targets
+  set(UPM_TARGETS_GO ${UPM_TARGETS_GO} goupm_${libname} CACHE INTERNAL "List of Go target names")
+endfunction(upm_swig_go)
+
 macro(upm_doxygen)
   if (DOXYGEN_FOUND)
     set (CMAKE_SWIG_FLAGS -DDOXYGEN=${DOXYGEN_FOUND})
@@ -804,6 +878,9 @@ function(upm_module_init)
     if (BUILDSWIGJAVA)
       upm_swig_java()
     endif (BUILDSWIGJAVA)
+    if (BUILDSWIGGO)
+      upm_swig_go()
+    endif (BUILDSWIGGO)
   endif (NOT IS_C_LIBRARY)
 
   # Add additional properties to this target (used later for .pc/pom file creation)
@@ -873,6 +950,7 @@ endif (BUILDDOC AND BUILDSWIGPYTHON)
 # Provide a cached variable to groups of targets
 set(UPM_TARGETS_C "" CACHE INTERNAL "List of C target names")
 set(UPM_TARGETS_CXX "" CACHE INTERNAL "List of CXX target names")
+set(UPM_TARGETS_GO "" CACHE INTERNAL "List of Go target names")
 set(UPM_TARGETS_JAVA "" CACHE INTERNAL "List of JAVA target names")
 set(UPM_TARGETS_NODEJS "" CACHE INTERNAL "List of NodeJs target names")
 set(UPM_TARGETS_PYTHON2 "" CACHE INTERNAL "List of Python2 target names")
