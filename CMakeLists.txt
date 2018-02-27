@@ -23,6 +23,36 @@ endif ()
 # Appends the cmake/modules path to MAKE_MODULE_PATH variable.
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
 
+# Given a target name, return all in-project targets ALREADY defined (ie, this
+# does not comprehend targets that have yet to be added.
+function (_get_dependency_targets target return_variable)
+    # Clear the variable
+    set(${return_variable} "")
+
+    # Get the LINK_LIBRARIES property of the target
+    get_target_property(_dep_libs ${target} LINK_LIBRARIES)
+
+    # Remove this target from the _dep_libs (if it exists)
+    list(REMOVE_ITEM _dep_libs ${target})
+
+    # Check if any of the LINK_LIBRARIES are targets in this project,
+    # if so, add them to ${return_variable}
+    foreach (deplib ${_dep_libs})
+        # Only add targets that exist
+        if (TARGET ${deplib})
+            list(APPEND ${return_variable} ${deplib})
+        # Special case - mraa is NOT in this project, but add it to the
+        # reqlibname list (used in various items like pom files, .pc files, etc
+        elseif (${deplib} MATCHES mraa)
+            list(APPEND ${return_variable} mraa)
+        endif (TARGET ${deplib})
+    endforeach (deplib ${_dep_libs})
+    # Uniquify
+    list(REMOVE_DUPLICATES ${return_variable})
+    # Make the list available outside this function
+    set (${return_variable} ${${return_variable}} PARENT_SCOPE)
+endfunction (_get_dependency_targets target)
+
 # Check if provided compiler supports target flag
 # usage:
 #       compiler_flag_supported(C/CXX is_supported flag)

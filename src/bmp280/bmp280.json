@@ -53,7 +53,7 @@
             "Manufacturers": ["adafruit", "seeed", "bosch"],
             "Examples":
             {
-                "Java": ["BME280_Example.java", "BME280_InterfaceExample"],
+                "Java": ["BMP280_BME280_Example.java", "BME280_InterfaceExample"],
                 "Python": ["bme280.py"],
                 "Node.js": ["bme280.js"],
                 "C++": ["bmp280-bme280.cxx"],
