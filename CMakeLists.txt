@@ -15,6 +15,7 @@ option (RPM "Generate RPM using CPack" OFF)
 option (NPM "Generate NPM/GYP tarballs" OFF)
 option (BUILDTESTS "Generate check-ups for upm" OFF)
 option (WERROR "Make all warnings into errors." ON)
+option (COVERAGE "Generate code coverage w/ctest suite." OFF)
 
 # Warn if building in source root
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
@@ -23,6 +24,18 @@ endif ()
 
 # Appends the cmake/modules path to MAKE_MODULE_PATH variable.
 set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+
+# Add the corresponding compiler flags for code coverage
+if(COVERAGE AND BUILDTESTS)
+  include(CodeCoverage)
+  append_coverage_compiler_flags()
+  set(COVERAGE_EXCLUDES
+      '/usr/*'
+      '**tests**'
+      '**external/json**'
+      "**${CMAKE_BINARY_DIR}**"
+      '**include/mraa**')
+endif()
 
 # Check if provided compiler supports target flag
 # usage:
@@ -503,3 +516,10 @@ endif()
 install(DIRECTORY include/ DESTINATION include/upm
     COMPONENT ${CMAKE_PROJECT_NAME}-dev
     FILES_MATCHING PATTERN "*.h" PATTERN "*.hpp")
+
+# Add test coverage via ctest
+if(COVERAGE AND BUILDTESTS)
+  setup_target_for_coverage(
+    NAME coverage
+    EXECUTABLE "${CMAKE_CTEST_COMMAND}" -E python -j ${PROCESSOR_COUNT})
+endif()
