@@ -7,6 +7,18 @@
 
 namespace upm
 {
+    enum TemperatureType
+    {
+        Celsius = 0,
+        Fahrenheit = 1,
+        Kelvin = 2,
+        custom
+    };
+
+    /* JSON type de/serializer */
+    void to_json(nlohmann::json& j, const SensorSource<float, TemperatureType>& p);
+    void from_json(const nlohmann::json& j, SensorSource<float, TemperatureType>& p);
+
     /**
      * Temperature abstract class.
      *
@@ -30,9 +42,22 @@ namespace upm
              *
              * @throws std::invalid_argument If source is NOT valid for this sensor
              *
-             * @return Map of sources to values.
+             * @return Single temperature value
              */
             virtual float TemperatureForSource(std::string source);
+
+            /**
+             * Read and return a single value from the source provided and return the corresponding units
+             *
+             * @param source Target source to read
+             *
+             * @param unit Target unit
+             *
+             * @throws std::invalid_argument If source is NOT valid for this sensor
+             *
+             * @return Single temperature value with unit = @param unit
+             */
+            virtual float TemperatureAs(std::string source, TemperatureType unit);
 
             /**
              * Read and return all values for this sensor for the provided
@@ -57,6 +82,9 @@ namespace upm
              */
             virtual std::string JsonTemperature() const;
 
+            std::map<std::string, SensorSource<float, TemperatureType>> &TemperatureSources();
+
+            static float Convert(float value, TemperatureType from, TemperatureType to);
         private:
             /**
              * Provide a means to read and serialize values from this sensor
@@ -71,7 +99,6 @@ namespace upm
 
             static std::string _DeserializeTemperatureSources(Gadget * inst);
 
-            std::map<std::string, upm::SensorSource<float>> _temp_sources;
-
+            std::map<std::string, upm::SensorSource<float, TemperatureType>> _temp_sources;
     };
 }

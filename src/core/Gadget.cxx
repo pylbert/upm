@@ -105,7 +105,6 @@ void Gadget::initFromJsonLibDesc(std::string path_to_json_file)
         }
         DEBUG_MSG("XXX Deserializers: " << ss.str());
     }
-
 }
 
 std::string Gadget::Description()

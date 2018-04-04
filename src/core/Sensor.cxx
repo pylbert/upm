@@ -4,18 +4,17 @@
 
 using namespace upm;
 
-namespace upm {
-template <typename T>
-void to_json(nlohmann::json& j, const SensorSource<T> &p) {
-    j = nlohmann::json{{"unit", p.unit}, {"min", p.min}, {"max", p.max}, {"accuracy", p.accuracy}};
+namespace upm
+{
+void to_json(nlohmann::json& j, const SensorSource<std::string, std::string> &p)
+{
+    j = nlohmann::json{{"type", p.type}, {"unit", p.unit}, {"min", p.min}, {"max", p.max}, {"accuracy", p.accuracy}};
 }
 
-template <typename T>
-void from_json(const nlohmann::json& j, SensorSource<T>& p) {
+void from_json(const nlohmann::json& j, SensorSource<std::string, std::string> &p)
+{
+    p.type = j.at("type").get<std::string>();
     p.unit = j.at("unit").get<std::string>();
-    p.min = j.at("min").get<T>();
-    p.max = j.at("max").get<T>();
-    p.accuracy = j.at("accuracy").get<T>();
 }
 }
 
@@ -36,7 +35,7 @@ std::string Sensor::LibraryJsonSources()
     return ss.str();
 }
 
-void Sensor::AddSource (std::string source, std::string unit)
+void Sensor::AddSource(std::string source, std::string unit)
 {
     /* Add the source:unit to the map */
     _sources_2_units[source] = unit;
@@ -61,23 +60,29 @@ void Sensor::AddSource (std::string source, std::string unit)
     _units.erase(std::unique(_units.begin(), _units.end()), _units.end());
 }
 
-std::map <std::string, std::string> const & Sensor::SourceMap () const
+std::map<std::string, std::string> const & Sensor::SourceMap() const
 { return _sources_2_units;}
 
-std::vector <std::string> const & Sensor::Sources ()
+std::vector<std::string> const & Sensor::Sources ()
 {
     /* If there are zero sources, look to the library json descriptor file */
     if (_sources.empty())
     {
+        DEBUG_MSG("No sources found, attempting to deserialize from JSON...");
+
         /* Copy all commands out of the JSON */
         nlohmann::json j_sources = nlohmann::json::parse(LibraryJsonSources());
         for (nlohmann::json::iterator it = j_sources.begin(); it != j_sources.end(); ++it)
-            _sources.push_back(it.key());
+        {
+            std::string unitstr = it.value().at("unit").get<std::string>();
+            AddSource(it.key(), unitstr);
+        }
     }
 
-    return _sources; }
+    return _sources;
+}
 
-std::vector <std::string> const & Sensor::Units () const
+std::vector<std::string> const & Sensor::Units () const
 { return _units; }
 
 std::string const Sensor::Unit (std::string source) const
@@ -95,12 +100,12 @@ bool Sensor::HasSource (std::string source)
     return std::find(Sources().begin(), Sources().end(), source) != Sources().end();
 }
 
-bool Sensor::HasUnit (std::string unit) const
+bool Sensor::HasUnit(std::string unit) const
 {
     return std::find(Units().begin(), Units().end(), unit) != Units().end();
 }
 
-std::string Sensor::JsonDefinition ()
+std::string Sensor::JsonDefinition()
 {
     std::stringstream ss;
 
@@ -124,7 +129,7 @@ std::string Sensor::JsonDefinition ()
     return ss.str();
 }
 
-std::string Sensor::JsonValues ()
+std::string Sensor::JsonValues()
 {
     std::stringstream ss;
     ss << "{" << std::endl;
@@ -148,9 +153,9 @@ std::string Sensor::JsonValues ()
  *  json is a partial type.  Because of this explicitly instantiate basic
  *  types.
 */
-template void upm::to_json(nlohmann::json& j, const SensorSource<int>& p);
-template void upm::from_json(const nlohmann::json& j, SensorSource<int>& p);
-template void upm::to_json(nlohmann::json& j, const SensorSource<float>& p);
-template void upm::from_json(const nlohmann::json& j, SensorSource<float>& p);
-template void upm::to_json(nlohmann::json& j, const SensorSource<double>& p);
-template void upm::from_json(const nlohmann::json& j, SensorSource<double>& p);
+//template void upm::to_json(nlohmann::json& j, const SensorSource<int>& p);
+//template void upm::from_json(const nlohmann::json& j, SensorSource<int>& p);
+//template void upm::to_json(nlohmann::json& j, const SensorSource<float>& p);
+//template void upm::from_json(const nlohmann::json& j, SensorSource<float>& p);
+//template void upm::to_json(nlohmann::json& j, const SensorSource<double>& p);
+//template void upm::from_json(const nlohmann::json& j, SensorSource<double>& p);

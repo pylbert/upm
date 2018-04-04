@@ -51,10 +51,6 @@ RHUSB::RHUSB(std::string device) :
 
   m_temperature = 0.0;
   m_humidity = 0.0;
-
-  /* Setup the sources available for this sensor */
-  //AddSource("temperature", "C");
-  //AddSource("humidity-relative", "%");
 }
 
 void RHUSB::update()

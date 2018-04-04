@@ -10,21 +10,19 @@
 
 namespace upm
 {
-
-    template <typename T>
+    template <typename T_VALUE, typename T_UNIT>
     struct SensorSource
     {
-        std::string unit;
-        T min;
-        T max;
-        T accuracy;
+        std::string type;
+        T_UNIT unit;
+        T_VALUE min;
+        T_VALUE max;
+        T_VALUE accuracy;
     };
 
-    template <class T>
-    void to_json(nlohmann::json& j, const SensorSource<T>& p);
+    void to_json(nlohmann::json& j, const SensorSource<std::string, std::string>& p);
 
-    template <class T>
-    void from_json(const nlohmann::json& j, SensorSource<T>& p);
+    void from_json(const nlohmann::json& j, SensorSource<std::string, std::string>& p);
 
     /**
      * Forward declaration of Sensor class for ostream usage

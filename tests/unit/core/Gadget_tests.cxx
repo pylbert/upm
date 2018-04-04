@@ -14,7 +14,7 @@ class Gadget_unit : public ::testing::Test
         Gadget_unit()
         {
             /* Load a specific JSON library descriptor file */
-            obj.initFromJsonLibDesc("./sensortype_example.json");
+            obj.initFromJsonLibDesc("./Sensor_example.json");
         }
 
         /* One-time tear-down logic if needed */

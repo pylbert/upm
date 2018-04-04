@@ -17,12 +17,14 @@
             },
             "Sources" : {
                 "temperature": {
+                    "type": "temperature",
                     "unit": "C",
                     "min" : -17,
                     "max" : 49,
                     "accuracy" : 1
                 },
                 "humidity-relative": {
+                    "type": "humidity",
                     "unit": "%",
                     "min" : 2,
                     "max" : 98,

@@ -22,16 +22,17 @@ gtest_add_tests(json_tests "" AUTO)
 add_executable(core_tests
     core/Gadget_tests.cxx
 
-    core/iSensortType_tests.cxx
+    core/Sensor_tests.cxx
+    core/Temperature_tests.cxx
 
     core/Actuator_tests.cxx
     core/ServoController_tests.cxx
 
-    core/sensortype_example.json
-    core/actuatortype_example.json)
+    core/Sensor_example.json
+    core/Actuator_example.json)
 
-configure_file(core/sensortype_example.json sensortype_example.json COPYONLY)
-configure_file(core/actuatortype_example.json actuatortype_example.json COPYONLY)
+configure_file(core/Sensor_example.json Sensor_example.json COPYONLY)
+configure_file(core/Actuator_example.json Actuator_example.json COPYONLY)
 
 target_link_libraries(core_tests core GTest::GTest GTest::Main)
 gtest_add_tests(core_tests "" AUTO)

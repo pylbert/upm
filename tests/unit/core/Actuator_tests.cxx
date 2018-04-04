@@ -12,7 +12,7 @@ protected:
     /* One-time setup logic if needed */
     Actuator_unit()
     {
-        this->initFromJsonLibDesc("./actuatortype_example.json");
+        this->initFromJsonLibDesc("./Actuator_example.json");
     }
 
     /* One-time tear-down logic if needed */

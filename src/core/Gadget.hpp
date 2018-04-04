@@ -92,6 +92,8 @@ inline std::string __func_or_memberfunc(const std::string& cxx_function)
             void AddValueSerializer(Gadget* instance, t_getJson method);
             void AddJsonDeserializer(Gadget* instance, t_getJson method);
 
+            virtual std::string SerilizerType() {return typeid(this).name();}
+
             /**
              * Used by child classes for child-to-parent proxy call
              */
