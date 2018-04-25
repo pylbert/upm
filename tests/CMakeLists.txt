@@ -51,13 +51,14 @@ if (BUILDSWIGPYTHON AND PYTHON2INTERP_FOUND)
     # Test load python2 modules
     add_test (NAME check_load_modules_python2 COMMAND ${PYTHON2_EXECUTABLE}
         ${CMAKE_CURRENT_SOURCE_DIR}/check_pythonload.py
-        ${CMAKE_BINARY_DIR}/src/*/python${PYTHON2_VERSION_MAJOR}.${PYTHON2_VERSION_MINOR}/*.py
+        -l ${CMAKE_BINARY_DIR}/src/*/python${PYTHON2_VERSION_MAJOR}.${PYTHON2_VERSION_MINOR}/*.py
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/)
 
     # Test load examples w/python2
     add_test (NAME check_load_examples_python2 COMMAND ${PYTHON2_EXECUTABLE}
         ${CMAKE_CURRENT_SOURCE_DIR}/check_pythonload.py
-        ${CMAKE_SOURCE_DIR}/examples/python/*.py
+        -l ${CMAKE_SOURCE_DIR}/examples/python/*.py
+        -s ${CMAKE_BINARY_DIR}/src/*/python${PYTHON2_VERSION_MAJOR}.${PYTHON2_VERSION_MINOR}/*.py
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/)
 endif (BUILDSWIGPYTHON AND PYTHON2INTERP_FOUND)
 
@@ -65,13 +66,14 @@ endif (BUILDSWIGPYTHON AND PYTHON2INTERP_FOUND)
 if (BUILDSWIGPYTHON AND PYTHON3INTERP_FOUND)
     add_test (NAME check_load_modules_python3 COMMAND ${PYTHON3_EXECUTABLE}
         ${CMAKE_CURRENT_SOURCE_DIR}/check_pythonload.py
-        ${CMAKE_BINARY_DIR}/src/*/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/*.py
+        -l ${CMAKE_BINARY_DIR}/src/*/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/*.py
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/)
 
     # Test load examples w/python3
     add_test (NAME check_load_examples_python3 COMMAND ${PYTHON3_EXECUTABLE}
         ${CMAKE_CURRENT_SOURCE_DIR}/check_pythonload.py
-        ${CMAKE_SOURCE_DIR}/examples/python/*.py
+        -l ${CMAKE_SOURCE_DIR}/examples/python/*.py
+        -s ${CMAKE_BINARY_DIR}/src/*/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/*.py
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src/)
 endif (BUILDSWIGPYTHON AND PYTHON3INTERP_FOUND)
 

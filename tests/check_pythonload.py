@@ -1,8 +1,8 @@
 #!/usr/bin/python
-import unittest
-import imp
 import glob
-import os, sys
+import imp
+import os
+import sys
 
 # Skip individual modules based on module name.  For example,
 # pyupm_ozw will skip pyupm_ozw.py.
@@ -20,26 +20,30 @@ blacklist = [
              'make_oled_pic'
              ]
 
-class loadModule(unittest.TestCase):
+
+#class loadModule(unittest.TestCase):
+class loadModule(object):
     ''' The loadModule class loads all module which match a search string
     provided via argv.  If any of the target modules fails loading, this
     class will assert and provide a list of failing modules.'''
-    def test_load_module(self):
-        # Python version provided on the command line
-        py_search_str = '../build/src/*/python2.7/*.py'
-        if len(self.argv) > 0:
-           py_search_str = self.argv[0]
-
+    def test_load_modules(self, test_module_regex, support_module_regex = None):
         # Make sure the search string has a full path
-        full_py_search_str = os.path.realpath(py_search_str)
+        full_py_search_str = os.path.realpath(test_module_regex)
 
         # Get all python modules matching full_py_search_str
         pyfiles = glob.glob(full_py_search_str)
 
         # Fail if no modules to test
-        self.assertNotEqual(len(pyfiles), 0,
-                'Failed to find any %s modules in %s' % \
-                (py_search_str, full_py_search_str));
+        if len(pyfiles) == 0:
+            sys.exit('Failed to find any %s modules in %s' %
+                    (test_module_regex, full_py_search_str))
+
+        # If any support modules were provided, create a fake module
+        # called 'upm', and place them under it
+        if (support_module_regex != None):
+            import upm
+            x = upm.loader()
+            x.addModules(support_module_regex)
 
         # Test load each module
         failures = {}
@@ -61,15 +65,25 @@ class loadModule(unittest.TestCase):
 
         skeys = list(failures.keys())
         skeys.sort()
-        self.assertEqual(len(failures), 0,
+        if len(failures) != 0:
+            sys.exit(
                 '\n\n%s' % '\n'.join((['%s=%s' % (k, os.environ[k]) for k in list(os.environ.keys())])) +
                 '\npython %s\n' % ' '.join(sys.version.strip().split()) +
                 '\nFailed to load %d modules:\n' % len(failures) +
                 '\n'.join(['%s: %s' % (k, failures[k]) for k in skeys]))
 
+
 if __name__ == '__main__':
-    # Allow passing from argv
-    loadModule.argv = []
-    for arg in sys.argv[1:]:
-        loadModule.argv.append(sys.argv.pop())
-    unittest.main()
+    import argparse
+    parser = argparse.ArgumentParser(description='Python module loader')
+    parser.add_argument('-l', '--load-module-regex',
+            metavar='/regex/path/to/*/module.py', required=True,
+            help='Regex of modules to test')
+    parser.add_argument('-s', '--support-module-regex',
+            metavar='/regex/path/to/*/module.py',
+            help="Regex of python modules to add to module 'upm'")
+
+    args = parser.parse_args()
+    x = loadModule()
+
+    x.test_load_modules(args.load_module_regex, args.support_module_regex)
