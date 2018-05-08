@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -x $0.local ]; then
+    $0.local "$@" || exit $?
+fi
+upm_hooks=.git.upm/hooks/$(basename $0)
+if [ -x $upm_hooks ]; then
+    echo "Calling upm git hook $(readlink -f $upm_hooks)"
+    $upm_hooks "$@" || exit $?
+fi
